@@ -1,0 +1,137 @@
+<div class="container mt-4">
+  <div class="card shadow-sm border-0">
+    <div class="card-header bg-success bg-opacity-10 border-bottom border-success">
+      <div class="d-flex justify-content-between align-items-center p-2">
+        <h2 class="text-success mb-0 fw-bold">Add Lead</h2>
+        <button class="btn btn-outline-success rounded-pill" routerLink="/Admin/AdminLead">
+          <i class="fas fa-arrow-left me-2"></i>Back
+        </button>
+      </div>
+    </div>
+    <div class="card-body bg-light">
+      <form [formGroup]="leadForm" (ngSubmit)="onSubmit()">
+        <div class="row g-4">
+          <!-- Lead Information -->
+          <div class="col-md-6">
+            <div class="card shadow-sm border-0 h-100">
+              <div class="card-header bg-success bg-opacity-10">
+                <h5 class="text-success mb-0">Lead Information</h5>
+              </div>
+              <div class="card-body">
+                <div class="mb-3">
+                  <label class="form-label text-success fw-semibold">Full Name</label>
+                  <input type="text" class="form-control border-success" formControlName="fullName" placeholder="Enter full name">
+                </div>
+                <div class="mb-3">
+                  <label class="form-label text-success fw-semibold">Mobile Number</label>
+                  <input type="text" class="form-control border-success" formControlName="mobileNumber" placeholder="Enter mobile number">
+                </div>
+                <div class="mb-3">
+                  <label class="form-label text-success fw-semibold">WhatsApp Number</label>
+                  <input type="text" class="form-control border-success" formControlName="whatsappNumber" placeholder="Enter WhatsApp number">
+                </div>
+                <div class="mb-3">
+                  <label class="form-label text-success fw-semibold">Email</label>
+                  <input type="email" class="form-control border-success" formControlName="email" placeholder="Enter email">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project Details -->
+          <div class="col-md-6">
+            <div class="card shadow-sm border-0 h-100">
+              <div class="card-header bg-success bg-opacity-10">
+                <h5 class="text-success mb-0">Project Details</h5>
+              </div>
+              <div class="card-body">
+                <div class="mb-3">
+                  <label class="form-label text-success fw-semibold">Project</label>
+                  <select class="form-select border-success" formControlName="project">
+                    <option value="" disabled>Select Project</option>
+                    <option *ngFor="let project of projects" [value]="project._id">{{project.projectName}}</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label text-success fw-semibold">Source of Lead</label>
+                  <select class="form-select border-success" formControlName="sourceOfLead">
+                    <option value="" disabled>Select Source</option>
+                    <option *ngFor="let source of leadSources" [value]="source._id">{{source.leadSourceType}}</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label text-success fw-semibold">Budget</label>
+                  <input type="number" class="form-control border-success" formControlName="budgetUpto" placeholder="Enter budget">
+                </div>
+                <div class="mb-3">
+                  <label class="form-label text-success fw-semibold">Interested In</label>
+                  <select class="form-select border-success" formControlName="interestedIn">
+                    <option value="" disabled>Select Interest</option>
+                    <option value="flat">Flat</option>
+                    <option value="rowhouse">Row House</option>
+                    <option value="farmland">Farm Land</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Visit Details -->
+          <div class="col-md-6">
+            <div class="card shadow-sm border-0 h-100">
+              <div class="card-header bg-success bg-opacity-10">
+                <h5 class="text-success mb-0">Visit Details</h5>
+              </div>
+              <div class="card-body">
+                <div class="mb-3">
+                  <label class="form-label text-success fw-semibold">Plan Date</label>
+                  <input type="date" class="form-control border-success" formControlName="visitPlanDate">
+                </div>
+                <div class="mb-3">
+                  <label class="form-label text-success fw-semibold">Inquiry Status</label>
+                  <select class="form-select border-success" formControlName="inquiryStatus">
+                    <option value="" disabled>Select Status</option>
+                    <option *ngFor="let status of inquiryStatuses" [value]="status._id">{{status.inquiryStatus}}</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label text-success fw-semibold">Followup Remark</label>
+                  <textarea class="form-control border-success" formControlName="followupRemark" rows="3" placeholder="Enter followup remarks"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Assignment Details -->
+          <div class="col-md-6">
+            <div class="card shadow-sm border-0 h-100">
+              <div class="card-header bg-success bg-opacity-10">
+                <h5 class="text-success mb-0">Assignment Details</h5>
+              </div>
+              <div class="card-body">
+                <div class="mb-3">
+                  <label class="form-label text-success fw-semibold">Assign To</label>
+                  <select class="form-select border-success" formControlName="assignTo">
+                    <option value="" disabled>Select Associate</option>
+                    <option *ngFor="let associate of associates" [value]="associate._id">{{associate.fullName}}</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label text-success fw-semibold">Lead Remark</label>
+                  <textarea class="form-control border-success" formControlName="leadRemark" rows="3" placeholder="Enter lead remarks"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="col-12 text-center mt-4">
+            <button type="submit" class="btn btn-success rounded-pill px-5" [disabled]="!leadForm.valid">
+              <i class="fas fa-save me-2"></i>Save Lead
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div> 

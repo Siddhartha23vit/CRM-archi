@@ -1,0 +1,253 @@
+<div class="card-header d-flex justify-content-between align-items-center">
+    <h1 class="px-3">Associate Create</h1>
+</div>
+<div class="container-fluid mt-2">
+    <div class="card">
+        <div class="card-header">
+            <h3>Create</h3>
+        </div>
+        <div class="card-body">
+            <form #AssociateForm="ngForm" (ngSubmit)="onsubmit()" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="registerdate" style="font-weight:500; font-size: 1.2rem;">Register Date<span
+                                class="text-danger">*</span></label>
+                            <input type="date" class="form-control" id="registerdate" name="registerdate" placeholder="Select Date" [(ngModel)]="newAssociate.registerDate" required #registerDate="ngModel" [class.invalid-input]="AssociateForm.submitted && registerDate.invalid">
+                            <div *ngIf="AssociateForm.submitted && registerDate.invalid" class="text-danger px-3">Date is required</div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="assfullname" style="font-weight:500; font-size: 1.2rem;">Full Name<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="assfullname" name="assfullname"
+                                placeholder="Enter Full Name" [(ngModel)]="newAssociate.fullName" required #fullName="ngModel"
+                                [class.invalid-input]="AssociateForm.submitted && fullName.invalid">
+                            <div *ngIf="AssociateForm.submitted && fullName.invalid" class="text-danger px-3">Name is required</div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="assfullname" style="font-weight:500; font-size: 1.2rem; white-space: nowrap;">Father/Husband Name<span
+                                    class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="assfather" name="assfather"
+                                placeholder="Enter Father/Husband Name" required [(ngModel)]="newAssociate.fatherOrHusbandName">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                          <label for="customerState" style="font-weight:500; font-size: 1.2rem;">State</label>
+                          <select class="form-control" id="customerState" name="customerState" [(ngModel)]="newAssociate.state" (change)="filterCities()">
+                            <option value="" disabled selected>Select State</option>
+                            <option *ngFor="let state of states" [ngValue]="state">{{ state }}</option>
+                          </select>
+                        </div>
+                      </div>
+                    
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <label for="customerCity" style="font-weight:500; font-size: 1.2rem;">City</label>
+                          <select class="form-control" id="customerCity" name="customerCity" [(ngModel)]="newAssociate.city">
+                            <option value="" disabled selected>Select City</option>
+                            <option *ngFor="let city of filteredCities" [ngValue]="city.city">{{ city.city }}</option>
+                          </select>
+                        </div>
+                      </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="assDOB" style="font-weight:500; font-size: 1.2rem;">Date of Birth<span
+                                class="text-danger">*</span></label>
+                            <input type="date" class="form-control" id="assDOB" name="assDOB" placeholder="Enter DOB" [(ngModel)]="newAssociate.dateOfBirth" required #dateOfBirth="ngModel"
+                            [class.invalid-input]="AssociateForm.submitted && dateOfBirth.invalid">
+                            <div *ngIf="AssociateForm.submitted && dateOfBirth.invalid" class="text-danger px-3">Date is required</div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="assPan" style="font-weight:500; font-size: 1.2rem;">Pan Number</label>
+                            <input type="text" class="form-control" id="assPan" name="assPan" placeholder="Enter Pan Number" [(ngModel)]="newAssociate.panNo">
+                        </div>
+                    </div>    
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="assAadhar" style="font-weight:500; font-size: 1.2rem;">Aadhar Number</label>
+                            <input type="text" class="form-control" id="assAadhar" name="assAadhar" placeholder="Enter Aadhar Number" [(ngModel)]="newAssociate.aadhar">
+                        </div>
+                    </div>  
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="assQualification" style="font-weight:500; font-size: 1.2rem;">Qualification</label>
+                            <input type="text" class="form-control" id="assQualification" name="assQualification" placeholder="Enter Qualification" [(ngModel)]="newAssociate.qualification">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="assMNumber" style="font-weight:500; font-size: 1.2rem;">Mobile Number<span
+                                class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="assMNumber" name="assMNumber" placeholder="Enter Mobile NUmber" [(ngModel)]="newAssociate.mobileNumber" required #mobileNumber="ngModel"
+                            [class.invalid-input]="AssociateForm.submitted && mobileNumber.invalid">
+                        <div *ngIf="AssociateForm.submitted && mobileNumber.invalid" class="text-danger px-3">Mobile Number is required</div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="assWNumber" style="font-weight:500; font-size: 1.2rem;">WhatApp's Number</label>
+                            <input type="text" class="form-control" id="assWNumber" name="assWNumber" placeholder="Enter Whatapp's Number" [(ngModel)]="newAssociate.whatsappNumber">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="assEmail" style="font-weight:500; font-size: 1.2rem;">E-Mail<span
+                                class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="assEmail" name="assEmail" placeholder="Enter E-Mail" [(ngModel)]="newAssociate.emailId" required #emailId="ngModel"
+                            [class.invalid-input]="AssociateForm.submitted && emailId.invalid">
+                        <div *ngIf="AssociateForm.submitted && emailId.invalid" class="text-danger px-3">E-Mail is required</div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="assCommission" style="font-weight:500; font-size: 1.2rem;">Commission<span
+                                class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="assCommission" name="assCommission" placeholder="Enter Commission" [(ngModel)]="newAssociate.commission" required #commission="ngModel"
+                            [class.invalid-input]="AssociateForm.submitted && commission.invalid">
+                        <div *ngIf="AssociateForm.submitted && commission.invalid" class="text-danger px-3">Commission is required</div>
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <label for="assAddress" style="font-weight:500; font-size: 1.2rem;">Address</label>
+                            <input type="text" class="form-control" id="assAddress" name="assAddress" placeholder="Enter Address" [(ngModel)]="newAssociate.fullAddress">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div   div class="form-group">
+                            <label for="assApplicantDesignation" style="font-weight:500; font-size: 1.2rem;">Applicant Designation<span class="text-danger">*</span></label>
+                            <select class="form-control" id="assApplicantDesignation" name="assApplicantDesignation" [(ngModel)]="newAssociate.applicantDesignation" required #applicantDesignation="ngModel"
+                            [class.invalid-input]="AssociateForm.submitted && applicantDesignation.invalid">
+                                <option value="" disabled selected>Select</option>
+                                <ng-container *ngFor="let Designation of designations">
+                                    <ng-container *ngIf="Designation.status">
+                                        <option [ngValue]="Designation.designationName">{{ Designation.designationName }}</option>
+                                    </ng-container>
+                                </ng-container>
+                            </select>  
+                            <div *ngIf="AssociateForm.submitted && applicantDesignation.invalid" class="text-danger px-3">Select Designation</div>    
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="assRole" style="font-weight:500; font-size: 1.2rem;">Select Role<span
+                                class="text-danger">*</span></label>
+                            <select class="form-control" id="assRole" name="assRole" placeholder="Select Role" [(ngModel)]="newAssociate.role" required #role="ngModel"
+                            [class.invalid-input]="AssociateForm.submitted && role.invalid">
+                            <option value="" disabled selected>Select</option>
+                            <ng-container *ngFor="let Role of Usertype">
+                                <ng-container *ngIf="Role.status">
+                                    <option [ngValue]="Role.type">{{ Role.type }}</option>
+                                </ng-container>
+                            </ng-container>
+                            </select>        
+                            <div *ngIf="AssociateForm.submitted && role.invalid" class="text-danger px-3">Select Role</div>    
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="card-header mt-5">
+                            <h3>Nominee Details</h3>
+                        </div> 
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="assNomineeName" style="font-weight:500; font-size: 1.2rem;">Nominee Name</label>
+                                <input type="text" class="form-control" id="assNomineeName" name="assNomineeName" placeholder="Enter Nominee Name" [(ngModel)]="newAssociate.nomineeName">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="assNomineenumber" style="font-weight:500; font-size: 1.2rem;">Nominee Number</label>
+                                <input type="text" class="form-control" id="assNomineenumber" name="assNomineenumber" placeholder="Enter Nominee Number" [(ngModel)]="newAssociate.nomineeMobileNumber">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="assNomineerelation" style="font-weight:500; font-size: 1.2rem; white-space: nowrap;">Relation With Nominee</label>
+                                <select class="form-control" id="assNomineerelation" name="assNomineerelation" placeholder="Select Relation" required [(ngModel)]="newAssociate.relationWithNominee">
+                                    <option value="" disabled selected>Select Relation</option>
+                                    <option value="Father">Father</option>
+                                    <option value="Mother">Mother</option>
+                                    <option value="Brother">Brother</option>
+                                    <option value="Sister">Sister</option>
+                                    <option value="Wife">Wife</option>
+                                    <option value="Self">Husband</option>
+                                    <option value="Son">Son</option>
+                                    <option value="Daughter">Daughter</option>
+                                    <option value="Friend">Friend</option>
+                                    <option value="Self">Self</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="card-header mt-5">
+                          <h3>Sponsor Details</h3>
+                        </div>
+                        <div class="form-group mt-1 col-md-3">
+                            <label for="AssignTo" class="col-sm-3 col-form-label" style="white-space: nowrap;">Assign To</label>
+                            <div class="col-sm-12">
+                              <select class="form-control" id="AssignTo" name="AssignTo" (change)="onAssignTo($event)">
+                                <option value="" disabled>Select Associate</option>
+                                <ng-container *ngFor="let associate of associates">
+                                  <option [value]="associate._id">{{ associate.fullName }}</option>
+                                </ng-container>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="form-group mt-1 col-md-2">
+                            <label for="Commission" class="col-sm-3 col-form-label" style="white-space: nowrap;">Commission</label>
+                            <div class="col-sm-12">
+                              <input type="text" class="form-control" id="Commission" name="Commission" placeholder="Commission" [(ngModel)]="newAssociate.Sponsorcommission" disabled>
+                            </div>
+                          </div>
+                          <div class="form-group mt-1 col-md-2">
+                            <label for="mobileNumber" class="col-sm-3 col-form-label" style="white-space: nowrap;">Mobile Number</label>
+                            <div class="col-sm-12">
+                              <input type="text" class="form-control" id="mobileNumber" name="mobileNumber" placeholder="Mobile Number" [(ngModel)]="newAssociate.sponsorMobile" disabled>
+                            </div>
+                          </div>
+                          <div class="form-group mt-1 col-md-2">
+                            <label for="assSponserDesg" class="col-sm-3 col-form-label" style="white-space: nowrap;">Designation</label>
+                            <div class="col-sm-12">
+                              <input type="text" class="form-control" id="assSponserDesg" name="assSponserDesg" placeholder="Designation" [(ngModel)]="newAssociate.sponsorDesignation" disabled>
+                            </div>
+                          </div>
+                          
+                     
+                     
+                  
+                    <div class="row">
+                        <div class="card-header mt-5">
+                            <h3>Upload Photo</h3>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group position-relative">
+                                <label for="customerProfile" style="font-weight:500; font-size: 1.2rem;">Upload Profile Picture</label>
+                                <div class="input-group">
+                                    <input type="file" class="form-control" id="customerProfile" name="customerProfile" (change)="onFileSelected($event)" required #photo>
+                                    <button *ngIf="selectedFile" class="btn btn-danger" type="button" (click)="deleteProfile()">
+                                        <span>&times;</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Submit button -->
+                <div class="row mt-3">
+                    <div class="col-md-12 text-center">
+                        <button type="submit" class="btn btn-outline-success">{{ isUpdateMode ? 'Update' : 'Save' }}</button>
+                    </div>
+                </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

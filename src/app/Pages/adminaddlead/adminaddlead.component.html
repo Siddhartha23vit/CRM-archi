@@ -1,0 +1,390 @@
+<div class="card-header d-flex justify-content-between align-items-center">
+    <h1 class="px-3">Lead</h1>
+  </div>
+  <div class="container mt-2">
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h3>Create</h3>
+            <div>
+                <button class="btn btn-outline-success mx-1" [routerLink]="['/Admin' ,'AdminLead']">List</button>
+            </div>
+        </div>
+      
+      <div class="card-body">
+        <form id="ProjectListForm" (ngSubmit)="onSubmitLead()" #LeadForm="ngForm">
+            <div class="row">
+                <div class="col-md-6 mt-2">
+                    <div class="form-group">
+                        <label for="SourceLead" id="SourceLead" style="font-weight:500; font-size: 1.2rem;">Source of Lead</label>
+                        <select class="form-control" id="SourceName" name="SourceName" [(ngModel)]="newLead.sourceOfLeads">
+                            <option value="Select Lead Source" disabled>Select Lead Source</option>
+                            <ng-container *ngFor="let item of Lead">
+                                <ng-container *ngIf="item.status">
+                                    <option [ngValue]="item._id">{{ item.leadSourceType }}</option>
+                                </ng-container>
+                            </ng-container>
+                        </select>
+                    </div>
+                </div>
+                
+            </div>
+           
+            <div class="row mt-3">
+                <div class="col-md-4 mt-2">
+                    <div class="form-group">
+                      <label for="LeadName" id="LeadName" style="font-weight:500; font-size: 1.2rem;">Lead Name</label>
+                      <div class="d-flex align-items-center">
+                        <select class="form-control me-2" id="customerName" name="customerName" [(ngModel)]="selectedCustomer"
+                                [(ngModel)]="newLead.leadName">
+                          <option value="" disabled selected>Select</option>
+                          <ng-container *ngFor="let customer of customers">
+                            <option [ngValue]="customer">{{ customer.fullName }}</option>
+                          </ng-container>
+                        </select>
+                       <!-- my-component.component.html -->
+                    <button type="button" class="btn btn-dark" (click)="openModal()">
+                     <img src="assets/Icons/Customers png.png" height="20" width="20">
+                    </button>
+                    <!--Model Start-->
+                    <div class="modal fade" #myModal tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header justify-content-between">
+                                    <h3 class="modal-title" id="exampleModalLabel">Customer</h3>
+                                    <button type="button" class="close" (click)="closeModal()" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container mt-2">
+                                    
+<div class="container mt-2">
+    <div class="card">
+        <div class="card-header">
+            <h3>Create</h3>
+        </div>
+        <div class="card-body">
+            <form #CustomerForm="ngForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="customerName" style="font-weight:500; font-size: 1.2rem;">Full Name<span
+                                    class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="customerName" name="customerName"
+                                placeholder="Enter Full Name" [(ngModel)]="newCustomer.fullName" required #fullName="ngModel"
+                                [class.invalid-input]="CustomerForm.submitted && fullName.invalid">
+                            <div *ngIf="CustomerForm.submitted && fullName.invalid" class="text-danger px-3">Name is required</div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="customerMobile" style="font-weight:500; font-size: 1.2rem;">Mobile Number<span
+                                    class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="customerMobile" name="customerMobile"
+                                placeholder="Enter Mobile Number" [(ngModel)]="newCustomer.mobileNumber" required #mobile="ngModel"
+                                [class.invalid-input]="CustomerForm.submitted && mobile.invalid">
+                            <div *ngIf="CustomerForm.submitted && mobile.invalid" class="text-danger px-3">Mobile Number is required</div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="customerWhatsapp" style="font-weight:500; font-size: 1.2rem;">WhatsApp Number</label>
+                            <input type="text" class="form-control" id="customerWhatsapp" name="customerWhatsapp"
+                                placeholder="Enter WhatsApp Number" [(ngModel)]="newCustomer.whatsappNumber" #whatsapp="ngModel"
+                                [class.invalid-input]="CustomerForm.submitted && whatsapp.invalid">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="customerRegDate" style="font-weight:500; font-size: 1.2rem;">Register Date <span class="text-danger">*</span></label>
+                            <!-- Use the 'date' filter to format the date without the time -->
+                            <input type="text" class="form-control" id="customerRegDate" name="customerRegDate" value="{{ toDate | date:'dd/MM/yyyy' }}" readonly>
+                        </div>
+                    </div>
+                                       
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="state" style="font-weight:500; font-size: 1.2rem;">State</label>
+                            <select class="form-control" id="state" name="state" placeholder="Select State" required [(ngModel)]="newCustomer.state" (change)="filterCities()" required #state="ngModel" [class.invalid-input]="CustomerForm.submitted && state.invalid">
+                                <option value="" disabled selected>Select State</option>
+                                <option *ngFor="let state of states" [value]="state">{{ state }}</option>
+                            </select>
+                            <div *ngIf="CustomerForm.submitted && state.invalid" class="text-danger px-3">Select State</div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="customerCity" style="font-weight:500; font-size: 1.2rem;">City</label>
+                            <select class="form-control" id="customerCity" name="customerCity" placeholder="Select City" [(ngModel)]="newCustomer.city" required #city="ngModel" [class.invalid-input]="CustomerForm.submitted && city.invalid">
+                                <option value="" disabled selected>Select City</option>
+                                <option *ngFor="let city of filteredCities" [ngValue]="city.id">{{ city.city }}</option>
+                            </select>
+                            <div *ngIf="CustomerForm.submitted && city.invalid" class="text-danger px-3">City is required</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="customerProfession" style="font-weight:500; font-size: 1.2rem;">Profession</label>
+                            <input type="text" class="form-control" id="customerProfession" name="customerProfession" placeholder="Enter Profession" [(ngModel)]="newCustomer.profession">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="customerEMail" style="font-weight:500; font-size: 1.2rem;">E-Mail</label>
+                            <input type="text" class="form-control" id="customerEMail" name="customerEMail" placeholder="Enter E-Mail" [(ngModel)]="newCustomer.emailId" required #emailId="ngModel" [class.invalid-input]="CustomerForm.submitted && emailId.invalid">
+                            <div *ngIf="CustomerForm.submitted && emailId.invalid" class="text-danger px-3">E-mail is required</div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="customerDOB" style="font-weight:500; font-size: 1.2rem;">Date of Birth</label>
+                            <input type="date" class="form-control" id="customerDOB" name="customerDOB" placeholder="Enter DOB" [(ngModel)]="newCustomer.dateOfBirth">
+                        </div>
+                    </div>
+                  
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="customerAnniversary" style="font-weight:500; font-size: 1.2rem;">Anniversary</label>
+                            <input type="date" class="form-control" id="customerAnniversary" name="customerAnniversary" placeholder="Enter Anniversary" [(ngModel)]="newCustomer.anniversary">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="customerGender" style="font-weight:500; font-size: 1.2rem;">Gender</label>
+                <select class="form-control" id="customerGender" name="customerGender" placeholder="Select Gender" required  [(ngModel)]="newCustomer.gender"  #gender="ngModel" [class.invalid-input]="CustomerForm.submitted && gender.invalid">
+                    <option value="" disabled selected>Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Transgender">Transgender</option>
+                </select>
+                <div *ngIf="CustomerForm.submitted && gender.invalid" class="text-danger px-3">Select Gender</div>
+        
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="customerBloodG" style="font-weight:500; font-size: 1.2rem;">Blood Group</label>
+                            <select class="form-control" id="customerBloodG" name="customerBloodG" placeholder="Select Blood Group" [(ngModel)]="newCustomer.bloodGroup">
+                                <option value="" disabled selected>Select Blood Group</option>
+                                <option value="O+">O+</option>
+                                <option value="A+">A+</option>
+                                <option value="B+">B+</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                                <option value="B-">B-</option>
+                                <option value="A-">A-</option>
+                                <option value="O-">O-</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="customerPan" style="font-weight:500; font-size: 1.2rem;">Pan Number</label>
+                            <input type="text" class="form-control" id="customerPan" name="customerPan" placeholder="Enter Pan Number" [(ngModel)]="newCustomer.panNumber">
+                        </div>
+                    </div>
+            <div class="col-md-4">
+                <div class="form-group position-relative">
+                    <label for="customerProfile" style="font-weight:500; font-size: 1.2rem;">Upload Profile Picture</label>
+                    <div class="input-group">
+                        <input type="file" class="form-control" id="customerProfile" name="customerProfile" (change)="onFileSelected($event)" required #photo>
+                        <button *ngIf="selectedFile" class="btn btn-danger" type="button" (click)="deleteProfile()">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                   
+                </div>
+            </div>
+            
+
+            
+
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="customerAddress" style="font-weight:500; font-size: 1.2rem;">Address</label>
+                    <textarea type="text" class="form-control" id="customerAddress" name="customerAddress" placeholder="Enter Address"[(ngModel)]="newCustomer.fullAddress" required #customerAddress="ngModel" [class.invalid-input]="CustomerForm.submitted && customerAddress.invalid" ></textarea>
+                    <div *ngIf="CustomerForm.submitted && customerAddress.invalid" class="text-danger px-3">Address is required</div>
+
+                </div>
+            </div>
+            </div>
+
+                <!-- Submit button -->
+                <div class="row mt-3">
+                    <div class="col-md-12 text-center">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                                        <!--Model ENd-->
+
+
+                      </div>
+                    </div>
+                  </div>
+                  
+            
+                <div class="col-md-4 mt-2">
+                    <div class="form-group">
+                        <label for="WhatAppNumber" style="font-weight:500; font-size: 1.2rem;">WhatsApp's Number</label>
+                        <input type="text" class="form-control" id="WhatAppNumber" name="WhatAppNumber" [value]="selectedCustomer?.whatsappNumber" placeholder="WhatsApp's Number" disabled>
+                    </div>
+                </div> 
+                <div class="col-md-4 mt-2">
+                    <div class="form-group">
+                        <label for="MobileNumber" style="font-weight:500; font-size: 1.2rem;">Mobile Number</label>
+                        <input type="text" class="form-control" id="MobileNumber" name="MobileNumber" [value]="selectedCustomer?.mobileNumber" placeholder="Mobile Number" disabled>
+                    </div>
+                </div>
+            </div>  
+            
+            <div class="row mt-3">
+                <div class="col-md-12 mt-2">
+                    <div class="form-group">
+                        <label for="Address" style="font-weight:500; font-size: 1.2rem;">Address</label>
+                        <textarea type="text" class="form-control" id="Address" name="Address" [value]="selectedCustomer?.fullAddress" placeholder="Address" disabled></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="row mt-5">
+                <div class="col-md-6 mt-2">
+                    <div class="form-group">
+                        <label for="Project" id="Project" style="font-weight:500; font-size: 1.2rem;">Project</label>
+                        <select class="form-control" id="Project" name="Project" [(ngModel)]="selectedProject" [(ngModel)]="newLead.projects">
+                            <option value="Select project" disabled>Select Project</option>
+                            <ng-container *ngFor="let project of projects">
+                                <option [ngValue]="project._id">{{ project.projectName }}</option>
+                            </ng-container>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 mt-2">
+                    <div class="form-group">
+                        <label for="InterestedIn" style="font-weight:500; font-size: 1.2rem;">Interested In</label>
+                        <select class="form-control" id="InterestedIn" name="InterestedIn" [(ngModel)]="newLead.intrestedIn">
+                            <option value="" disabled>Select Interest</option>
+                            <ng-container *ngFor="let type of combinedTypes">
+                                <ng-container *ngIf="type.status">
+                                    <option [ngValue]="type">{{ getTypeLabel(type) }}</option>
+                                </ng-container>
+                            </ng-container>
+                        </select>
+                    </div>
+                </div>
+                
+
+            <div class="col-md-3 mt-2">
+                <div class="form-group">
+                    <label for="Budeget" style="font-weight:500; font-size: 1.2rem;">Budeget</label>
+                    <input type="text" class="form-control" id="Budeget" name="Budeget" placeholder="Enter Budeget"  [(ngModel)]="newLead.budgetUpto">
+                </div>
+            </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-md-6 mt-2">
+                  <div class="form-group">
+                    <label for="AssignTo" style="font-weight:500; font-size: 1.2rem;">Assign To</label>
+                    <select class="form-control" id="AssignTo" name="AssignTo" [(ngModel)]="newLead.AssignTo" (change)="onAssignTo(newLead.AssignTo)">
+                      <option value="" disabled>Select Associate</option>
+                      <ng-container *ngFor="let associate of associates">
+                        <option [ngValue]="associate">{{ associate.fullName }}</option>
+                      </ng-container>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-3 mt-2">
+                  <div class="form-group">
+                    <label for="mobileNumber" style="font-weight:500; font-size: 1.2rem;">Mobile Number</label>
+                    <input type="text" class="form-control" id="mobileNumber" name="mobileNumber" placeholder="Enter Mobile Number" [value]="selectedAssociate?.mobileNumber || ''" disabled>
+                  </div>
+                </div>  
+                
+                <div class="col-md-12 mt-5">
+                    <div class="form-group">
+                        <label for="leadRemark" style="font-weight:500; font-size: 1.2rem;" >Lead Remark</label>
+                        <textarea type="text" class="form-control" id="LeadRemark" name="leadRemark" placeholder="Enter Lead Description"required  [(ngModel)]="newLead.leadRemark"></textarea>
+    
+                    </div>
+                </div>
+
+                <div class="row">
+                <div class="card-header mt-5">
+                    <h3>Visit</h3>
+                  </div> 
+                  <div class="col-md-3 mt-2">
+                    <div class="form-group">
+                        <label for="InquiryStatus" id="InquiryStatus" style="font-weight:500; font-size: 1.2rem;">Inquiry Status</label>
+                        <select class="form-control" id="Inquiry" name="Inquiry" [(ngModel)]="newLead.visitInquiryStatus">
+                            <option value="" disabled selected>Select</option>
+                            <ng-container *ngFor="let items of Inquiry">
+                                <ng-container *ngIf="items.status && items.stageType === 'Lead'">
+                                    <option [ngValue]="items._id">{{ items.inquiryStatus }}</option>
+                                </ng-container>
+                            </ng-container>
+                        </select>   
+                    </div>
+                </div>
+                
+                <div class="col-md-3 mt-2">
+                    <div class="form-group">
+                        <label for="PlanDate" style="font-weight:500; font-size: 1.2rem;">Plan Date</label>
+                        <input type="date" class="form-control" id="PlanDate" name="PlanDate" placeholder="Select Plan Date"  [(ngModel)]="newLead.visitPlanDate">
+                    </div>
+                </div>
+                <div class="col-md-8 mt-3">
+                    <div class="form-group">
+                        <label for="followedup" style="font-weight:500; font-size: 1.2rem;">Follow UpRemark</label>
+                        <textarea type="text" class="form-control" id="followedup" name="followedup" placeholder="Enter Remark" required  [(ngModel)]="newLead.visitFollowupRemark"></textarea>
+                    </div>
+                </div>
+            </div>
+          
+
+            <div class="row">
+                <div class="card-header mt-5">
+                    <h3>Reference</h3>
+                  </div> 
+                <div class="col-md-3 mt-2">
+                    <div class="form-group">
+                        <label for="Name" style="font-weight:500; font-size: 1.2rem;">Name</label>
+                        <input type="text" class="form-control" id="Name" name="Name" placeholder="Enter Name"  [(ngModel)]="newLead.referenceName">
+                    </div>
+                </div>
+                <div class="col-md-3 mt-2">
+                    <div class="form-group">
+                        <label for="phone" style="font-weight:500; font-size: 1.2rem;">Phone Number</label>
+                        <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter phone number" required  [(ngModel)]="newLead.referencePhone">
+                    </div>
+                </div>
+            </div>
+            </div>
+            
+            <div class="col-md-12 text-center mt-5">
+                <button type="submit" class="btn btn-outline-success" (click)="onSubmitLead()">
+                    {{ isUpdateMode ? 'Update' : 'Save' }}
+                  </button>
+                              </div>
+            
+        </form>
+      </div>
+    </div>
+  </div>
+
+  

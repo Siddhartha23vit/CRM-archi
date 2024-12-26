@@ -1,0 +1,191 @@
+/* Card styles */
+.card {
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.card-header {
+    background-color: #fff;
+    border-bottom: 1px solid #edf2f7;
+    padding: 1rem 1.5rem;
+    border-radius: 8px 8px 0 0;
+}
+
+.card-header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #2d3748;
+    margin: 0;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+/* Filter Section */
+.filter-section {
+    background-color: #f8fafc;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    color: #4a5568;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+/* Project Info Card */
+.project-info .card {
+    background-color: #f8fafc;
+    border: 1px solid #edf2f7;
+}
+
+.project-info h5 {
+    color: #2d3748;
+    font-weight: 600;
+}
+
+.project-info .text-muted {
+    color: #718096 !important;
+}
+
+/* Form Controls */
+.form-control, .form-select {
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 0.5rem;
+    font-size: 0.95rem;
+    color: #4a5568;
+    transition: all 0.2s;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+}
+
+.form-control::placeholder {
+    color: #a0aec0;
+}
+
+/* Table Styles */
+.table-responsive {
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    background-color: #fff;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table thead th {
+    background-color: #f7fafc;
+    border-bottom: 2px solid #edf2f7;
+    color: #4a5568;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    padding: 1rem;
+    white-space: nowrap;
+}
+
+.table tbody td {
+    padding: 0.75rem;
+    vertical-align: middle;
+    border-bottom: 1px solid #edf2f7;
+}
+
+.table tbody tr:hover {
+    background-color: #f7fafc;
+}
+
+/* Form Controls in Table */
+.table .form-control-sm, .table .form-select-sm {
+    height: 32px;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+}
+
+/* Buttons */
+.btn {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn i {
+    font-size: 1rem;
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    border: none;
+    color: white;
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #2980b9, #2c3e50);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(52, 152, 219, 0.2);
+}
+
+.btn-outline-success {
+    color: #3498db;
+    border: 1px solid #3498db;
+}
+
+.btn-outline-success:hover {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    border-color: transparent;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(52, 152, 219, 0.2);
+}
+
+/* Required Field Indicator */
+.text-danger {
+    color: #f56565 !important;
+    margin-left: 2px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .card-header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .btn-group {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .filter-section {
+        padding: 1rem;
+    }
+    
+    .table-responsive {
+        margin: 0 -1rem;
+    }
+    
+    .project-info .card-body {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .project-info .text-end {
+        text-align: center !important;
+        margin-top: 1rem;
+    }
+}
+  
+  

@@ -1,0 +1,203 @@
+.text-success {
+  color: #3498db !important;
+}
+
+.bg-success.bg-opacity-10 {
+  background: rgba(52, 152, 219, 0.1) !important;
+}
+
+.border-success {
+  border-color: #3498db !important;
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #3498db, #2980b9) !important;
+  border: none !important;
+  transition: all 0.3s ease;
+  color: white !important;
+}
+
+.btn-success:hover {
+  background: linear-gradient(135deg, #2980b9, #2c3e50) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2);
+}
+
+.btn-outline-success {
+  color: #3498db !important;
+  border-color: #3498db !important;
+  background: transparent !important;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-success:hover {
+  color: white !important;
+  background: linear-gradient(135deg, #3498db, #2980b9) !important;
+  border-color: transparent !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2);
+}
+
+/* Form Controls */
+.form-select.border-success:focus {
+  border-color: #3498db !important;
+  box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25) !important;
+}
+
+/* Badge */
+.badge.bg-success.bg-opacity-10 {
+  background: rgba(52, 152, 219, 0.1) !important;
+  color: #3498db !important;
+}
+
+/* Table styles */
+.table-scrollable {
+  overflow-x: auto;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin: 1rem 0;
+}
+
+.table {
+  margin-bottom: 0;
+}
+
+.table th {
+  background: #3498db !important;
+  color: white;
+  font-weight: 600;
+  padding: 1rem;
+  border: none;
+  white-space: nowrap;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+}
+
+.table td {
+  padding: 1rem;
+  vertical-align: middle;
+  border-color: #f1f5f9;
+  color: #475569;
+}
+
+.table tbody tr {
+  transition: all 0.2s ease;
+}
+
+.table tbody tr:hover {
+  background-color: #f8fafc;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+/* Badge styles */
+.badge {
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  border-radius: 50px;
+}
+
+.badge.bg-success.bg-opacity-10 {
+  background: rgba(52, 152, 219, 0.1) !important;
+  color: #3498db !important;
+}
+
+/* Table column widths */
+.Action {
+  width: 200px;
+}
+
+.LeadNo {
+  width: 150px;
+}
+
+.InquiryStatus {
+  width: 200px;
+}
+
+.ProspectName {
+  width: 350px;
+}
+
+.PlanDate {
+  width: 200px;
+}
+
+/* Card in table */
+.table .card {
+  background: #f8fafc;
+  border: none;
+  box-shadow: none;
+  margin: 0;
+}
+
+.table .card-body {
+  padding: 1rem;
+}
+
+.table .card:hover {
+  transform: none;
+}
+
+/* Button group in table */
+.table .btn-group {
+  gap: 0.5rem;
+}
+
+.table .btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+/* Status badges */
+.status-badge {
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  display: inline-block;
+}
+
+/* Responsive table */
+@media (max-width: 768px) {
+  .table-scrollable {
+    margin: 0.5rem 0;
+  }
+  
+  .table th, .table td {
+    padding: 0.75rem;
+  }
+}
+
+/* Card styles */
+.card {
+  transition: all 0.3s ease;
+  border: none;
+  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.1);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+.card-header {
+  background: rgba(52, 152, 219, 0.1) !important;
+  border-bottom: 1px solid rgba(52, 152, 219, 0.2);
+}
+
+/* Form controls */
+.form-control, .form-select {
+  border-color: #3498db !important;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: #3498db !important;
+  box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25) !important;
+}
+
+/* Labels */
+.form-label {
+  color: #3498db !important;
+  font-weight: 600;
+}

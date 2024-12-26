@@ -1,0 +1,106 @@
+<div class="row mt-2">
+  <div class="col-md-4" style="position: fixed;">
+    <form id="CityForm" (ngSubmit)="isUpdating ? updateCity() : submitCity()" id="City" #CityForm="ngForm">
+            <div class="form-group mx-3">
+              <label for="state" class="px-3 py-2">State<span class="text-danger" >*</span></label>
+              <select class="form-control" id="state" name="state" [(ngModel)]="newCity.state" required #state="ngModel" [class.invalid-input]="CityForm.submitted && state.invalid">
+                <option value="" disabled selected>Select State</option>
+                <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                <option value="Assam">Assam</option>
+                <option value="Bihar">Bihar</option>
+                <option value="Chandigarh">Chandigarh</option>
+                <option value="Chhattisgarh">Chhattisgarh</option>
+                <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Goa">Goa</option>
+                <option value="Gujarat">Gujarat</option>
+                <option value="Haryana">Haryana</option>
+                <option value="Himachal Pradesh">Himachal Pradesh</option>
+                <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                <option value="Jharkhand">Jharkhand</option>
+                <option value="Karnataka">Karnataka</option>
+                <option value="Kerala">Kerala</option>
+                <option value="Ladakh">Ladakh</option>
+                <option value="Lakshadweep">Lakshadweep</option>
+                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                <option value="Maharashtra">Maharashtra</option>
+                <option value="Manipur">Manipur</option>
+                <option value="Meghalaya">Meghalaya</option>
+                <option value="Mizoram">Mizoram</option>
+                <option value="Nagaland">Nagaland</option>
+                <option value="Odisha">Odisha</option>
+                <option value="Puducherry">Puducherry</option>
+                <option value="Punjab">Punjab</option>
+                <option value="Rajasthan">Rajasthan</option>
+                <option value="Sikkim">Sikkim</option>
+                <option value="Tamil Nadu">Tamil Nadu</option>
+                <option value="Telangana">Telangana</option>
+                <option value="Tripura">Tripura</option>
+                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                <option value="Uttarakhand">Uttarakhand</option>
+                <option value="West Bengal">West Bengal</option>
+              </select>
+              <div *ngIf="CityForm.submitted && state.invalid" class="text-danger px-3">State is required</div>
+            </div>
+            <div class="form-group mx-3">
+              <label for="city" class="px-3 py-2">City<span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="city" name="city" placeholder="Enter City" [(ngModel)]="newCity.city" required #city="ngModel" [class.invalid-input]="CityForm.submitted && city.invalid">
+              <div *ngIf="CityForm.submitted && city.invalid" class="text-danger px-3">City is required</div>
+            </div>  
+      
+            <div class="form-check mt-4 mx-5">
+              <h5> <input class="form-check-input" type="checkbox" value="" id="status" name="status" [(ngModel)]="newCity.status">
+                <label class="form-check-label" for="status">
+                  Active
+                </label>
+              </h5>
+            </div>
+            <div class="mt-4 mx-5">
+              <button id="submitButton" class="btn btn-submit mx-3">
+                <i class="fas fa-save me-2"></i>
+                {{ isUpdating ? 'Update' : 'Submit' }}
+              </button>
+              <button type="reset" class="btn btn-reset mx-3">
+                <i class="fas fa-undo me-2"></i>
+                Reset
+              </button>
+            </div>
+          </form>
+          
+
+    </div> 
+     <div class="col-md-8 offset-md-4">
+      
+ <div class="input-group mb-3 sticky-top">
+  <input type="text" class="form-control mr-2" placeholder="Search" [(ngModel)]="searchTerm" (input)="searchCity()">
+  <div class="input-group-append">
+    <button class="btn btn-secondary" type="button">Search</button>
+  </div>
+</div>
+      <table class="table table-striped" style="overflow-y: auto; width: 100%;">
+        <thead>
+          <tr>
+            <th scope="col">State</th>
+            <th scope="col">City</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let city of filteredCities">
+            <td>{{ city.state }}</td>
+            <td>{{ city.city }}</td>
+            <td>{{ city.status ? 'Active' : 'Inactive' }}</td> 
+            <td>   
+              <div style="display: flex; gap: 10px; padding: 5px;">
+                <button class="btn btn-outline-danger" (click)="deletecity(city._id)">Delete</button>
+                <button *ngIf="!isUpdating" class="btn btn-outline-warning" (click)="populateFormFields(city._id)">Update</button>
+              </div>        
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

@@ -1,0 +1,70 @@
+<div class="row mt-2">
+  <div class="col-md-4" style="position: fixed;">
+    <form (ngSubmit)="isUpdating ? updateUserType() : submitUsertype()" id="UserType" #UserTypeForm="ngForm">
+      <div class="form-group mx-3">
+          
+            <label for="UserTypeName" class="px-3 py-2">User Type <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="UsertypeName" name="UsertypeName" placeholder="Enter User type" [(ngModel)]="newUsertype.type" required #type="ngModel" [class.invalid-input]="UserTypeForm.submitted && type.invalid">
+            <div *ngIf="UserTypeForm.submitted && type.invalid" class="text-danger px-3">Charge Name is required</div>
+
+          </div>
+          <div class="form-check mt-4 mx-5">
+              <h5> <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" [(ngModel)]="newUsertype.backOffice">
+              <label class="form-check-label" for="defaultCheck1">
+                Bank Office
+              </label>
+          </h5>
+          </div>
+          <div class="form-check mt-4 mx-5">
+            <h5> <input class="form-check-input" type="checkbox" value="" id="status" name="status" [(ngModel)]="newUsertype.status">
+              <label class="form-check-label" for="status">
+                Active
+              </label>
+            </h5>
+        </div>
+          <div class="mt-4 mx-5">
+            <button id="submitButton" class="btn btn-submit mx-3">
+              <i class="fas fa-save me-2"></i>
+              {{ isUpdating ? 'Update' : 'Submit' }}
+            </button>
+            <button type="reset" class="btn btn-reset mx-3">
+              <i class="fas fa-undo me-2"></i>
+              Reset
+            </button>
+          </div>
+       
+        </form>
+
+    </div>
+    <div class="col-md-8 offset-md-4">
+      <div class="input-group mb-3 sticky-top">
+        <input type="text" class="form-control mr-2" placeholder="Search " [(ngModel)]="searchTerm" (input)="searchUserType()">
+        <div class="input-group-append">
+          <button class="btn btn-secondary" type="button">Search</button>
+        </div>
+      </div>
+      <table class="table table-striped" style="overflow-y: auto; width: 100%;">
+        <thead>
+          <tr>
+            <th scope="col">Usertype Name</th>
+            <th scope="col">Bank Office</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let usertypes of filteredUserType ">
+            <td>{{ usertypes.type}}</td>
+            <td>{{ usertypes.backOffice ? 'Active' : 'Inactive' }}</td>
+            <td>{{ usertypes.status ? 'Active' : 'Inactive' }}</td> 
+            <td>   
+              <div style="display: flex; gap: 10px; padding: 5px;">
+                <button class="btn btn-outline-danger" (click)="deleteUsertype(usertypes._id)">Delete</button>
+                <button *ngIf="!isUpdating" class="btn btn-outline-warning" (click)="populateFormFields(usertypes._id)">Update</button>
+              </div>        
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

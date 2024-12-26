@@ -1,0 +1,113 @@
+<div class="general-master-container">
+  <div class="header-section">
+    <h1>General Master</h1>
+    <div class="search-box">
+      <input type="text" placeholder="Search masters..." class="search-input">
+      <i class="fas fa-search search-icon"></i>
+    </div>
+  </div>
+
+  <div class="content-section">
+    <mat-sidenav-container>
+      <mat-sidenav mode="side" opened class="master-nav">
+        <div class="master-categories">
+          <div class="category-group">
+            <h3>Basic Information</h3>
+            <ul class="master-list">
+              <li [routerLink]="['AdminDesignation']" routerLinkActive="active">
+                <i class="fas fa-id-badge"></i>
+                <span>Designation</span>
+              </li>
+              <li [routerLink]="['AdminBank']" routerLinkActive="active">
+                <i class="fas fa-university"></i>
+                <span>Bank</span>
+              </li>
+              <li [routerLink]="['AdminUserType']" routerLinkActive="active">
+                <i class="fas fa-users"></i>
+                <span>User Type</span>
+              </li>
+              <li [routerLink]="['AdminCity']" routerLinkActive="active">
+                <i class="fas fa-city"></i>
+                <span>City</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="category-group">
+            <h3>Property Details</h3>
+            <ul class="master-list">
+              <li [routerLink]="['AdminFacing']" routerLinkActive="active">
+                <i class="fas fa-compass"></i>
+                <span>Facing</span>
+              </li>
+              <li [routerLink]="['AdminDirection']" routerLinkActive="active">
+                <i class="fas fa-location-arrow"></i>
+                <span>Direction</span>
+              </li>
+              <li [routerLink]="['AdminFlatType']" routerLinkActive="active">
+                <i class="fas fa-building"></i>
+                <span>Flat Type</span>
+              </li>
+              <li [routerLink]="['AdminRawHouseType']" routerLinkActive="active">
+                <i class="fas fa-home"></i>
+                <span>Row House Type</span>
+              </li>
+              <li [routerLink]="['AdminFarmLandType']" routerLinkActive="active">
+                <i class="fas fa-tree"></i>
+                <span>Farm Land Type</span>
+              </li>
+              <li [routerLink]="['AdminAmenities']" routerLinkActive="active">
+                <i class="fas fa-swimming-pool"></i>
+                <span>Amenities</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="category-group">
+            <h3>Business Operations</h3>
+            <ul class="master-list">
+              <li [routerLink]="['AdminInquiryStatus']" routerLinkActive="active">
+                <i class="fas fa-question-circle"></i>
+                <span>Inquiry Status</span>
+              </li>
+              <li [routerLink]="['AdminDoucmentType']" routerLinkActive="active">
+                <i class="fas fa-file-alt"></i>
+                <span>Document Type</span>
+              </li>
+              <li [routerLink]="['AdminLeadSource']" routerLinkActive="active">
+                <i class="fas fa-funnel-dollar"></i>
+                <span>Lead Source</span>
+              </li>
+              <li [routerLink]="['AdminProjectProcess']" routerLinkActive="active">
+                <i class="fas fa-project-diagram"></i>
+                <span>Project Process</span>
+              </li>
+              <li [routerLink]="['AdminInventoryType']" routerLinkActive="active">
+                <i class="fas fa-boxes"></i>
+                <span>Inventory Type</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="category-group">
+            <h3>Financial</h3>
+            <ul class="master-list">
+              <li [routerLink]="['AdminCharges']" routerLinkActive="active">
+                <i class="fas fa-money-bill-wave"></i>
+                <span>Charges</span>
+              </li>
+              <li [routerLink]="['AdminDediction']" routerLinkActive="active">
+                <i class="fas fa-percentage"></i>
+                <span>Deduction Type</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </mat-sidenav>
+
+      <mat-sidenav-content class="master-content">
+        <router-outlet></router-outlet>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+</div>

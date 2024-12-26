@@ -1,0 +1,290 @@
+ <div class="card-header d-flex justify-content-between align-items-center">
+    <h1 class="px-3">Project List</h1>
+  </div>
+  <div class="container mt-2">
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h3>Create</h3>
+            <div>
+                <button class="btn btn-outline-success mx-1" [routerLink]="['/Admin', 'AdminProjectList', 'AddProject']"> Add New</button>
+                <button class="btn btn-outline-success mx-1" [routerLink]="['/Admin' ,'AdminProjectList']">List</button>
+            </div>
+        </div>
+    
+      
+      <div class="card-body">
+        <form (submit)="submitProjectList()" id="ProjectListForm" #ProjectListForm="ngForm">
+            <div class="row">
+            <div class="col-md-3 mt-2">
+                <div class="form-group">
+                    <label for="projectName" style="font-weight:500; font-size: 1.2rem;">Project Name <span
+                        class="text-danger">*</span> </label>
+                    <input type="text" class="form-control" id="projectName" name="projectName" placeholder="Enter Project Name" [(ngModel)]="newProjectList.projectName" required #projectName="ngModel" [class.invalid-input]="ProjectListForm.submitted && projectName.invalid">
+                    <div *ngIf="ProjectListForm.submitted && projectName.invalid" class="text-danger px-3">Project Name is required</div>
+                </div>
+            </div>
+            <div class="col-md-3 mt-2">
+                <div class="form-group">
+                    <label for="CompanyName" style="font-weight:500; font-size: 1.2rem;">Company Name </label>
+                    <input type="text" class="form-control" id="CompanyName" name="companyName" placeholder="Enter Company Name" [(ngModel)]="newProjectList.companyName" >
+                  </div>
+            </div>
+            <div class="col-md-3 mt-2">
+                <div class="form-group">
+                    <label for="RearNumber" style="font-weight:500; font-size: 1.2rem;">Rear Number</label>
+                    <input type="text" class="form-control" id="RearNumber" name="reraNumber" placeholder="Enter Rear Number" [(ngModel)]="newProjectList.reraNumber"  >
+                  </div>
+            </div>
+         
+            <div class="col-md-3 mt-2">
+                <div class="form-group">
+                    <label for="GuidelineValue" style="font-weight:500; font-size: 1.2rem;">Guideline Value
+                    </label>
+                    <input type="text" class="form-control" id="GuidelineValue" name="guideLineValue" placeholder="0.00" [(ngModel)]="newProjectList.guideLineValue"  >
+                  </div>
+            </div> 
+         
+             
+
+            <div class="col-md-3 mt-2">
+                <div class="form-group">
+                    <label for="projectType" style="font-weight: 500; font-size: 1.2rem;">Project Type <span
+                        class="text-danger">*</span></label>
+                    <select class="form-control" id="projectType" name="projectType" [(ngModel)]="newProjectList.projectType" (change)="onProjectTypeChange()" required #projectType="ngModel" [disabled]="isUpdateMode">
+                        <option value="" disabled>Select Type</option>
+                        <option value="Apartment">Apartment</option>
+                        <option value="Plot">Plot</option>
+                        <option value="FarmLand">Farm Land</option>
+                        <option value="RowHouse">Row House</option>
+                    </select>
+                </div>
+            </div>
+            
+            
+            <!-- Total Building (default) -->
+            <div class="col-md-3 mt-2" *ngIf="newProjectList.projectType === 'Apartment' || !newProjectList.projectType">
+                <div class="form-group">
+                    <label for="totalBuilding" style="font-weight: 500; font-size: 1.2rem;">Total Building <span
+                        class="text-danger">*</span></label>
+                    <input type="number" class="form-control" id="totalBuilding" name="totalBuilding" [(ngModel)]="newProjectList.totalBuilding" required #totalBuilding="ngModel" [class.invalid-input]="ProjectListForm.submitted && totalBuilding.invalid" min="0">
+                    <div *ngIf="ProjectListForm.submitted && totalBuilding.invalid" class="text-danger px-3">Total Building is required</div>
+                </div>
+            </div>
+            
+            <!-- Total Plot (displayed when project type is Plot) -->
+            <div class="col-md-3 mt-2" *ngIf="newProjectList.projectType === 'Plot'">
+                <div class="form-group">
+                    <label for="totalPlot" style="font-weight: 500; font-size: 1.2rem;">Total Plot<span
+                        class="text-danger">*</span></label>
+                    <input type="number" class="form-control" id="totalPlot" name="totalPlot" [(ngModel)]="newProjectList.totalPlot" required #totalPlot="ngModel" [class.invalid-input]="ProjectListForm.submitted && totalPlot.invalid" min="0">
+                    <div *ngIf="ProjectListForm.submitted && totalPlot.invalid" class="text-danger px-3">Total Plot is required </div>
+                </div>
+            </div>
+            
+          
+            <div class="col-md-3 mt-2" *ngIf="newProjectList.projectType === 'FarmLand'">
+                <div class="form-group">
+                    <label for="totalfarmLand" style="font-weight: 500; font-size: 1.2rem;">Total Farm Land<span
+                        class="text-danger">*</span></label>
+                    <input type="number" class="form-control" id="totalfarmLand" name="totalfarmLand" [(ngModel)]="newProjectList.totalfarmLand" required #totalfarmLand="ngModel" [class.invalid-input]="ProjectListForm.submitted && totalfarmLand.invalid" min="0">
+                    <div *ngIf="ProjectListForm.submitted && totalfarmLand.invalid" class="text-danger px-3">Total Farm Land is required</div>
+                </div>
+            </div>    
+              <!-- Total Raw House (displayed when project type is Raw House) -->
+              <div class="col-md-3 mt-2" *ngIf="newProjectList.projectType === 'RowHouse'">
+                <div class="form-group">
+                    <label for="totalrowHouse" style="font-weight: 500; font-size: 1.2rem;">Total Row House<span
+                        class="text-danger">*</span></label>
+                    <input type="number" class="form-control" id="totalrowHouse" name="totalrowHouse" [(ngModel)]="newProjectList.totalrowHouse" required #totalrowHouse="ngModel" [class.invalid-input]="ProjectListForm.submitted && totalrowHouse.invalid" min="0">
+                    <div *ngIf="ProjectListForm.submitted && totalrowHouse.invalid" class="text-danger px-3">Total Row House is required </div>
+                </div>
+            </div>       
+            <div class="col-md-6 mt-2">
+                <div class="form-group">
+                  <label for="amenities" style="font-weight:500; font-size: 1.2rem;">Amenities</label>
+                  <mat-form-field class="full-width col-md-8">
+                    <mat-select [(ngModel)]="selectedAmenities" name="amenities" multiple>
+                      <mat-select-trigger>
+                        {{selectedAmenities.length ? selectedAmenities.join(', ') : 'Select'}}
+                      </mat-select-trigger>
+                      <mat-option *ngFor="let amenity of amenities" [value]="amenity.amenity" [disabled]="!amenity.status" >
+                        {{ amenity.amenity }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+          
+            <div class="col-md-3 mt-2">
+                <div class="form-group">
+                    <label for="HeadName" style="font-weight:500; font-size: 1.2rem;">Head Name<span
+                        class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="HeadName" name="HeadName" placeholder="Enter Head Name" [(ngModel)]="newProjectList.headName" required #headName="ngModel" [class.invalid-input]="ProjectListForm.submitted && headName.invalid">
+                    <div *ngIf="ProjectListForm.submitted && headName.invalid" class="text-danger px-3">Head Name is required</div>
+                </div>
+            </div>
+            <div class="col-md-3 mt-2">
+            <div class="form-group">
+                <label for="MobileNumber" style="font-weight:500; font-size: 1.2rem;">Mobile Number<span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="MobileNumber" name="mobileNumber" placeholder="Enter Mobile Number" [(ngModel)]="newProjectList.mobileNumber" required #mobileNumber="ngModel" maxlength="10" [class.invalid-input]="ProjectListForm.submitted && mobileNumber.invalid || (formSubmitted && !isValidMobileNumber())" (blur)="formSubmitted = true">
+                <div *ngIf="ProjectListForm.submitted && mobileNumber.invalid || (formSubmitted && !isValidMobileNumber())" class="text-danger px-3">Mobile Number is required and must be 10 digits</div>
+              </div>
+            </div>
+                          
+            
+            
+
+            <div class="col-md-3 mt-2">
+                <div class="form-group">
+                  <label for="StartDate" style="font-weight:500; font-size: 1.2rem;">Start Date<span
+                    class="text-danger">*</span></label>
+                  <input type="date" class="form-control" id="StartDate" name="StartDate" [(ngModel)]="newProjectList.startDate" required #startDate="ngModel" [class.invalid-input]="ProjectListForm.submitted && startDate.invalid">
+                  <div *ngIf="ProjectListForm.submitted && startDate.invalid" class="text-danger px-3">Please Select Start Date</div>
+                </div>
+              </div>
+            <div class="col-md-3 mt-2">
+                <div class="form-group">
+                    <label for="CompletionDate" style="font-weight:500; font-size: 1.2rem;">Completion Date
+                    </label>
+                    <input type="date" class="form-control" id="CompletionDate" name="CompletionDate" placeholder="Select Date" [(ngModel)]="newProjectList.completionDate"  >
+                </div>
+            </div>
+            <div class="col-md-3 mt-2">
+                <div class="form-group">
+                    <label for="ProjectDiscription" style="font-weight:500; font-size: 1.2rem;">Project Discription</label>
+                    <input type="text" class="form-control" id="ProjectDiscription" name="ProjectDiscription" placeholder="Enter Project Discription" [(ngModel)]="newProjectList.projectDescription" >
+                </div>
+            </div>
+            <div class="col-md-3 mt-2">
+                <div class="form-group">
+                    <label for="ProjectStatus" id="ProjectStatus" style="font-weight:500; font-size: 1.2rem;">Project Status<span
+                        class="text-danger">*</span>
+                    </label>
+                    <select class="form-control" id="ProjectStatus" name="ProjectStatus" [(ngModel)]="newProjectList.status" required #status="ngModel" [class.invalid-input]="ProjectListForm.submitted && status.invalid">
+                      <option value="" disabled selected>Select Type</option>
+                      <option value="Completed">Completed</option>
+                      <option value="UnderConstruction">Under Construction</option>
+                    </select>
+                    <div *ngIf="ProjectListForm.submitted && status.invalid" class="text-danger px-3">Select Project Status is required</div>
+
+                </div>
+            </div>
+            
+            <div class="card-header mt-5">
+                <h3>Address</h3>
+              </div>       
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="customerState" style="font-weight:500; font-size: 1.2rem;">State</label>
+                  <select class="form-control" id="customerState" name="customerState" [(ngModel)]="newProjectList.state" (change)="filterCities()">
+                    <option value="" disabled selected>Select State</option>
+                    <option *ngFor="let state of states" [ngValue]="state">{{ state }}</option>
+                  </select>
+                </div>
+              </div>
+            
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="customerCity" style="font-weight:500; font-size: 1.2rem;">City</label>
+                  <select class="form-control" id="customerCity" name="customerCity" [(ngModel)]="newProjectList.city">
+                    <option value="" disabled selected>Select City</option>
+                    <option *ngFor="let city of filteredCities" [ngValue]="city.city">{{ city.city }}</option>
+                  </select>
+                </div>
+              </div>
+              
+        
+            <div class="col-md-4 mt-2">
+                <div class="form-group">
+                    <label for="Address" style="font-weight:500; font-size: 1.2rem;">Address</label>
+                    <input type="text" class="form-control" id="Address" name="Address" placeholder="Enter Address" [(ngModel)]="newProjectList.address"  >
+                </div>
+            </div> 
+
+
+
+   <div class="card-header mt-5">
+                <h3>Bank</h3>
+              </div> 
+              <div class="col-md-3 mt-2">
+                <div class="form-group">
+                    <label for="bank" style="font-weight:500; font-size: 1.2rem;">Bank</label>
+                    <select class="form-control" id="bank" name="bank" [(ngModel)]="newProjectList.bank">
+                        <option value="" disabled selected>Select</option>
+                        <ng-container *ngFor="let banks of bank">
+                            <ng-container *ngIf="banks.status">
+                                <option [ngValue]="banks.bankName">{{ banks.bankName }}</option>
+                            </ng-container>
+                        </ng-container>
+                    </select> 
+                </div>
+            </div>
+            <div class="col-md-3 mt-2">
+                <div class="form-group">
+                    <label for="AccountNumber" style="font-weight:500; font-size: 1.2rem;">Account No.</label>
+                    <input type="text" class="form-control" id="AccountNumber" name="AccountNumber" placeholder="Enter Account Number" [(ngModel)]="newProjectList.accountNumber" >
+                </div>
+            </div>
+            <div class="col-md-3 mt-2">
+                <div class="form-group">
+                    <label for="IFCSCode" style="font-weight:500; font-size: 1.2rem;">IFSC Code</label>
+                    <input type="text" class="form-control" id="IFCSCode" name="IFCSCode" placeholder="Enter IFCS Code" [(ngModel)]="newProjectList.ifscCode" >
+                </div>
+            </div>
+            <div class="col-md-3 mt-2">
+                <div class="form-group">
+                    <label for="BankAddress" style="font-weight:500; font-size: 1.2rem;">Bank Address</label>
+                    <input type="text" class="form-control" id="BankAddress" name="BankAddress" placeholder="Enter Bank Address" [(ngModel)]="newProjectList.bankAddress"  >
+                </div>
+            </div> 
+
+
+        <div class="card-header mt-5">
+                <h3>Commission Detail</h3>
+            </div> 
+            <div class="row">
+                <div class="col-md-3 mt-2">
+                    <div class="form-group">
+                        <label for="CommissionMethod" id="CommissionMethodLabel" style="font-weight:500; font-size: 1.2rem;">Commission Method</label>
+                        <select class="form-control" id="CommissionMethod" name="CommissionMethod" [(ngModel)]="newProjectList.commissionMethod" required #commissionMethod="ngModel">
+                            <option value="" disabled selected>Select Type</option>
+                            <option value="Amount Squar Feet">Amount in sqft</option>
+                            <option value="percentage">On %</option>
+                        </select>
+                        <div *ngIf="ProjectListForm.submitted && commissionMethod.invalid" class="text-danger px-3">Commission Method  is required</div>
+
+                    </div>
+                </div> 
+            <div class="col-md-6 mt-2">
+                    <div class="form-group">
+                        <label for="Commission" style="font-weight:500; font-size: 1.2rem;">Commission<span
+                            class="text-danger">*</span></label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="Commission" name="Commission" placeholder="Enter Commission" [(ngModel)]="newProjectList.commission" required #commission="ngModel" [class.invalid-input]="ProjectListForm.submitted && commission.invalid">
+                            <div class="input-group-append mx-4 ">
+                                    <div class="form-check">
+                                        <h4>
+                                        <input class="form-check-input" type="checkbox" value="" id="InclusiveRegistry" name="InclusiveRegistry" [(ngModel)]="newProjectList.inclusiveRegistry"  >
+                                        <label class="form-check-label" for="InclusiveRegistry" name="InclusiveRegistry">
+                                            Inclusive Registry
+                                        </label>
+                                    </h4>
+                                    </div>
+                            </div>
+
+                        </div>
+                        <div *ngIf="ProjectListForm.submitted && commission.invalid" class="text-danger px-3">Commission is required</div>
+                    </div>
+                </div>  
+            </div>
+
+            </div>
+            <div class="col-md-12 text-center mt-5">
+                <button type="submit" class="btn btn-outline-success">{{ isUpdateMode ? 'Update' : 'Save' }}</button>
+            </div>
+            
+        </form>
+      </div>
+    </div>
+  </div>
+

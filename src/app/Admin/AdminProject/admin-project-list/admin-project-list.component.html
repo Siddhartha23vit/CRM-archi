@@ -1,0 +1,186 @@
+<!-- Page Header -->
+<div class="container-fluid">
+  <div class="card">
+    <div class="card-header">
+      <h1>Project List</h1>
+    </div>
+
+    <!-- Search Panel -->
+    <div class="card-body search-panel">
+      <div class="row">
+        <div class="col-md-3">
+          <label for="projectType">Project Type</label>
+          <select class="form-control" id="projectType" [(ngModel)]="searchType" name="searchType">
+            <option value="" disabled selected>Select Project Type</option>
+            <option value="Apartment">Apartment</option>
+            <option value="Plot">Plot</option>
+            <option value="RowHouse">Row House</option>
+            <option value="FarmLand">Farm Land</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <label for="state">State</label>
+          <select class="form-control" id="state" [(ngModel)]="searchState" name="searchState">
+            <option value="" disabled selected>Select State</option>
+            <option value="Maharashtra">Maharashtra</option>
+            <option value="Gujarat">Gujarat</option>
+            <option value="Karnataka">Karnataka</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <label for="city">City</label>
+          <select class="form-control" id="city" [(ngModel)]="searchCity" name="searchCity">
+            <option value="" disabled selected>Select City</option>
+            <option value="Mumbai">Mumbai</option>
+            <option value="Pune">Pune</option>
+            <option value="Bangalore">Bangalore</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <label for="status">Status</label>
+          <select class="form-control" id="status" [(ngModel)]="searchStatus" name="searchStatus">
+            <option value="" disabled selected>Select Status</option>
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+          </select>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-12 text-end">
+          <button class="btn btn-success" (click)="searchProject()">
+            <i class="fas fa-search me-2"></i>Search
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project List -->
+  <div class="card mt-4">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <div class="items-per-page">
+        <label for="itemsPerPage" class="mb-0">Show</label>
+        <select id="itemsPerPage" class="form-control" [(ngModel)]="itemsPerPage" (change)="onItemsPerPageChange()">
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+          <option value="200">200</option>
+          <option value="all">All</option>
+        </select>
+        <span>entries</span>
+      </div>
+      <div class="action-buttons">
+        <button class="btn btn-outline-success" [routerLink]="['/Admin', 'AdminProjectList', 'AddProject']">
+          <i class="fas fa-plus me-1"></i>Add
+        </button>
+        <button class="btn btn-outline-success" (click)="copyProjects()">
+          <i class="fas fa-copy me-1"></i>Copy
+        </button>
+        <button class="btn btn-outline-success" (click)="generatePDF()">
+          <i class="fas fa-file-pdf me-1"></i>PDF
+        </button>
+        <button class="btn btn-outline-success" (click)="downloadWordFile()">
+          <i class="fas fa-file-word me-1"></i>M.S.Word
+        </button>
+        <button class="btn btn-outline-success" (click)="generateExcelFile()">
+          <i class="fas fa-file-excel me-1"></i>Excel
+        </button>
+      </div>
+    </div>
+
+    <div class="table-scrollable">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Project Type</th>
+            <th>Project Description</th>
+            <th>Address</th>
+            <th>Amenities</th>
+            <th>Particular</th>
+            <th>Bank Detail</th>
+            <th>Commission</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let project of paginatedProjects">
+            <td>
+              <span class="fw-medium">{{ project.projectType }}</span>
+            </td>
+            <td>
+              <div class="project-details-card">
+                <h5>Rera No: {{ project.reraNumber }}</h5>
+                <h5 class="project-name">{{ project.projectName }}</h5>
+                <p class="mb-0">{{ project.companyName }}</p>
+              </div>
+            </td>
+            <td>
+              <div class="project-details-card">
+                <p class="mb-1">{{ project.state }}, {{ project.city }}</p>
+                <p class="mb-0">{{ project.address }}</p>
+              </div>
+            </td>
+            <td>
+              <p class="mb-0">{{ project.amenities }}</p>
+            </td>
+            <td>
+              <div class="project-details-card">
+                <p class="mb-1">Buildings: {{ project.totalBuilding }}</p>
+                <p class="mb-1">Plots: {{ project.totalPlot }}</p>
+                <p class="mb-1">Farm Land: {{ project.totalfarmLand }}</p>
+                <p class="mb-0">Row Houses: {{ project.totalrowHouse }}</p>
+              </div>
+            </td>
+            <td>
+              <div class="project-details-card">
+                <p class="mb-1">Bank: {{ project.bank }}</p>
+                <p class="mb-1">A/C: {{ project.accountNumber }}</p>
+                <p class="mb-0">IFSC: {{ project.ifscCode }}</p>
+              </div>
+            </td>
+            <td>
+              <div class="project-details-card">
+                <p class="mb-1">Method: {{ project.commissionMethod }}</p>
+                <p class="mb-0">Amount: {{ project.commission }}</p>
+              </div>
+            </td>
+            <td>
+              <span class="badge" [ngClass]="project.status === 'Active' ? 'bg-success' : 'bg-danger'">
+                {{ project.status }}
+              </span>
+            </td>
+            <td>
+              <div class="action-buttons">
+                <button class="btn btn-sm btn-outline-primary" [routerLink]="['/Admin', 'AdminProjectList', 'EditProject', project['_id']]">
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn btn-sm btn-outline-danger" (click)="deleteProjectList(project['_id'])">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="card-footer">
+      <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center mb-0">
+          <li class="page-item" [class.disabled]="currentPage === 1">
+            <a class="page-link" href="javascript:void(0)" (click)="changePage(currentPage - 1)">Previous</a>
+          </li>
+          <li class="page-item" *ngFor="let page of getPages()" [class.active]="page === currentPage">
+            <a class="page-link" href="javascript:void(0)" (click)="changePage(page)">{{ page }}</a>
+          </li>
+          <li class="page-item" [class.disabled]="currentPage === totalPages">
+            <a class="page-link" href="javascript:void(0)" (click)="changePage(currentPage + 1)">Next</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>

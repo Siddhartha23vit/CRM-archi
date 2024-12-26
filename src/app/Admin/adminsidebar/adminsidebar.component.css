@@ -1,0 +1,114 @@
+/* Overall height adjustment for the sidenav container */
+mat-sidenav-container {
+    height: calc(205vh - 115vh);
+}
+
+/* Sidenav width */
+mat-sidenav {
+    width: 250px;
+}
+
+/* Heading 2 styling */
+h2 {
+    padding: 15px;
+    font-size: xx-large; 
+}
+
+/* Heading 3 styling with a pointer cursor */
+h3 {
+    cursor: pointer;
+}
+
+/* Anchor link color */
+a {
+    color: #333;
+}
+
+/* Image styling */
+img {
+    width: 100%;
+    height: 10%;
+}
+
+/* Dropdown menu margin adjustment */
+.dropdown-menu {
+    margin-left: -20px; /* Adjust this value as needed */
+}
+
+/* Sidenav links list styling */
+.side-nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 5px 0 0 0;
+    height: calc(100% - 50px);
+}
+
+/* Sidenav list item styling */
+.side-nav-links li {
+    position: relative;
+    padding: 20px;
+    border-bottom: 0px solid #555;
+    cursor: pointer;
+}
+
+/* Sidenav list item hover effect */
+.side-nav-links li:hover {
+    text-decoration: underline white;
+}
+
+/* No border for the last item in the sidenav */
+.side-nav-links li:last-child {
+    border-bottom: none;
+}
+
+/* Sidenav links anchor styling */
+.side-nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+/* Remove underline by default for child dropdown items of the "Leads" menu */
+.side-nav-links li.leads ul {
+    text-decoration: none;
+}
+
+/* Apply underline to child dropdown items of the "Leads" menu on hover */
+.side-nav-links li.leads ul:hover {
+    text-decoration: underline;
+}
+
+/* Reset padding and margin for sublist in sidenav */
+.side-nav-links ul {
+    padding: 0;
+    margin: 0;
+    top: 100%; 
+    left: 0;
+}
+
+/* Color box styling */
+.color-box {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-right: 10px;
+    border: 1px solid black; /* Add black border */
+}
+
+/* Background color classes */
+.bg-dark { background-color: #343a40; }
+.bg-primary { background-color: #007bff; }
+.bg-secondary { background-color: #6c757d; }
+.bg-success { background-color: #28a745; }
+.bg-danger { background-color: #dc3545; }
+.bg-warning { background-color: #ffc107; }
+.bg-info { background-color: #17a2b8; }
+
+/* Color selector row styling */
+.color-selector-row {
+    display: flex;
+    align-items: center;
+    border-left: 1px solid black;
+    padding-left: 10px;
+}

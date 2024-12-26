@@ -1,0 +1,189 @@
+<h2 class="px-4 py-3 text-2xl font-bold text-gray-800">Associate</h2>
+
+<form>
+    <div class="container mt-4">
+        <div class="card shadow-sm">
+            <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 px-4 border-0">
+                <h1 class="h3 mb-0">Search Panel</h1>
+                <button class="btn btn-primary px-4 d-flex align-items-center gap-2">
+                    <i class="fas fa-search"></i>
+                    Search
+                </button>
+            </div>
+            <div class="card-body">
+                <!-- Search form fields here -->
+            </div>
+        </div>
+    </div>
+</form>
+
+<div class="container-fluid p-4">
+    <!-- Associates List -->
+    <div class="card">
+        <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <h3>Associates List</h3>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-outline-primary" [routerLink]="['/Admin', 'AdminAssociate', 'AddAssociate']">
+                        <i class="fas fa-plus me-2"></i>Add
+                    </button>
+                    <button class="btn btn-outline-primary" (click)="copyAssociate()">
+                        <i class="fas fa-copy me-2"></i>Copy
+                    </button>
+                    <button class="btn btn-outline-primary" (click)="generatePDF()">
+                        <i class="fas fa-file-pdf me-2"></i>PDF
+                    </button>
+                    <button class="btn btn-outline-primary" (click)="downloadWordFile()">
+                        <i class="fas fa-file-word me-2"></i>Word
+                    </button>
+                    <button class="btn btn-outline-primary" (click)="generateExcelFile()">
+                        <i class="fas fa-file-excel me-2"></i>Excel
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body p-0">
+            <div class="table-scrollable">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Details</th>
+                            <th>Register Date</th>
+                            <th>Father/Husband Name</th>
+                            <th>Commission</th>
+                            <th>Sponsor By</th>
+                            <th>Designation</th>
+                            <th>Address</th>
+                            <th>Password</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let associate of associates">
+                            <td class="card-col">
+                                <div class="card associate-card">
+                                    <div class="row g-0">
+                                        <div class="col-md-5">
+                                            <img [src]="'http://127.0.0.1:5001/api/associates/associate-photo/' + associate._id" 
+                                                 alt="Profile Picture" 
+                                                 class="w-100">
+                                        </div>
+                                        <div class="col-md-7">
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                                    <h5 class="card-title">
+                                                        {{associate.uniqueId}} 
+                                                        <span class="text-muted fw-normal">{{associate.role}}</span>
+                                                    </h5>
+                                                </div>
+                                                <h6 class="mb-3">{{associate.fullName}}</h6>
+                                                
+                                                <p class="card-text mb-2">
+                                                    <i class="fas fa-phone me-2"></i>
+                                                    <span class="text-muted">{{associate.mobileNumber}}</span>
+                                                </p>
+                                                <p class="card-text mb-2">
+                                                    <i class="fab fa-whatsapp me-2"></i>
+                                                    <span class="text-muted">{{associate.whatsappNumber}}</span>
+                                                </p>
+                                                <p class="card-text mb-3">
+                                                    <i class="fas fa-envelope me-2"></i>
+                                                    <span class="text-muted">{{associate.emailId}}</span>
+                                                </p>
+                                                
+                                                <span class="badge bg-light text-primary mb-3">
+                                                    {{associate.applicantDesignation}}
+                                                </span>
+                                                
+                                                <div class="text-muted small">
+                                                    <p class="mb-1"><strong>DOB:</strong> {{associate.dateOfBirth | date: 'dd-MM-yyyy'}}</p>
+                                                    <p class="mb-1"><strong>PAN:</strong> {{associate.panNo}}</p>
+                                                    <p class="mb-0"><strong>Aadhar:</strong> {{associate.aadhar}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-center align-middle">{{associate.registerDate | date: 'dd-MM-yyyy'}}</td>
+                            <td class="text-center align-middle">{{associate.fatherOrHusbandName}}</td>
+                            <td class="text-center align-middle">{{associate.commission}}</td>
+                            <td class="text-center align-middle">{{associate.sponsorBy}}</td>
+                            <td class="text-center align-middle">{{associate.applicantDesignation}}</td>
+                            <td class="text-center align-middle">
+                                <div class="text-start">
+                                    <p class="mb-1 small"><strong>State:</strong> {{associate.state}}</p>
+                                    <p class="mb-1 small"><strong>City:</strong> {{associate.city}}</p>
+                                    <p class="mb-0 small text-wrap" style="max-width: 200px;">
+                                        <strong>Address:</strong> {{associate.fullAddress}}
+                                    </p>
+                                </div>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="password-container">
+                                    <p class="password-text">
+                                        {{passwordVisibility[associate._id] ? associate.password : '••••••••'}}
+                                        <i class="fas" 
+                                           [ngClass]="{'fa-eye': !passwordVisibility[associate._id], 'fa-eye-slash': passwordVisibility[associate._id]}"
+                                           (click)="togglePasswordVisibility(associate._id)">
+                                        </i>
+                                    </p>
+                                </div>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="d-flex gap-2 justify-content-center">
+                                    <button class="btn btn-outline-primary btn-sm" (click)="updateassociate(associate)">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-outline-danger btn-sm" (click)="deleteAssociates(associate._id)">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .btn-success {
+        background-color: #10B981;
+        border-color: #10B981;
+    }
+    .btn-success:hover {
+        background-color: #059669;
+        border-color: #059669;
+    }
+    .btn-outline-success {
+        color: #10B981;
+        border-color: #10B981;
+    }
+    .btn-outline-success:hover {
+        background-color: #10B981;
+        border-color: #10B981;
+    }
+    .text-success {
+        color: #10B981 !important;
+    }
+    .card {
+        border-radius: 0.5rem;
+        overflow: hidden;
+    }
+    .table-responsive {
+        border-radius: 0.5rem;
+    }
+    .table th {
+        font-weight: 600;
+        color: #374151;
+    }
+    .table td {
+        vertical-align: middle;
+    }
+    .badge {
+        font-weight: 500;
+    }
+</style>

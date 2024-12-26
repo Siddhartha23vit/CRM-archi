@@ -1,0 +1,188 @@
+<form>
+  <div class="container mt-3">
+    <div class="card">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h1>Project Demand</h1>
+        <button type="button" class="btn btn-success btn-lg btn-block mt-3" (click)="onSearch()">Search</button>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="projectType">Project Type</label>
+              <select class="form-control" id="projectType" name="projectType" [(ngModel)]="selectedProjectType" (change)="onProjectTypeChange()">
+                <option value="All">All</option>
+                <option value="Apartment">Apartment</option>
+                <option value="Plot">Plot</option>
+                <option value="FarmLand">Farm Land</option>
+                <option value="RowHouse">Row House</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="Unit">Unit</label>
+              <select class="form-control" id="Unit" name="Unit" [(ngModel)]="selectedUnit">
+                <option value="" selected>All</option>
+                <option *ngFor="let project of filteredUnits" [value]="project._id">{{ project.projectName }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="status">Status</label>
+              <select class="form-control" id="status" name="status" [(ngModel)]="selectedStatus">
+                <option value="" disabled selected>Select Status</option>
+                <option value="Completed">Completed</option>
+                <option value="UnderConstruction">Under Construction</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<div class="container-fluid mt-3">
+  <div class="card-header d-flex justify-content-between align-items-center" style="background-color: #C0C0C0;">
+    <h1>List</h1>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped mt-3">
+      <thead>
+        <tr>
+          <th scope="col">Action</th>
+          <th scope="col">Project Type</th>
+          <th scope="col">Project Name</th>
+          <th scope="col">Status</th>
+          <th scope="col">Progress</th>
+          <th scope="col">Demand(%)</th>
+          <th scope="col">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let project of filteredProjects">
+          <td>
+            <button type="button" class="btn btn-dark" (click)="openModal()">Demand</button>          
+            </td>
+          <td>{{ project.projectType }}</td>
+          <td>{{ project.projectName }}</td>
+          <td>{{ project.status }}</td>
+          <td>After Adding Demand</td>
+          <td>After Adding Demand</td>
+          <td>After Adding Demand</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!-- Model -->
+<div class="modal fade" #myModal tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+      <div class="modal-content">
+          <div class="modal-header justify-content-between">
+              <h3 class="modal-title" id="exampleModalLabel">Project Demand
+              </h3>
+              <button type="button" class="close" (click)="closeModal()" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <div class="container mt-2">
+              
+<div class="container-fluid mt-2">
+<div class="card">
+<div class="card-header">
+<h3>Project Demand Detalis</h3>
+</div><div class="card-body">
+  <form (ngSubmit)="addprojectDemand()" id="Projectdemand" #Projectdemand="ngForm">
+    <div class="row">
+      <div class="col-md-2">
+        <div class="form-group">
+          <label for="Date">Date</label>
+          <input type="date" class="form-control" id="Date" name="Date" [(ngModel)]="newprojectdemand.date">
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="projectType">Progress Name</label>
+          <select class="form-control" id="assApplicantDesignation" name="assApplicantDesignation" [(ngModel)]="newprojectdemand.progressName">
+            <option value="" disabled selected>Select</option>
+            <ng-container *ngFor="let Projects of Project">
+              <ng-container *ngIf="Projects.status">
+                <option [ngValue]="Projects.projectprogressType">{{ Projects.projectprogressType }}</option>
+              </ng-container>
+            </ng-container>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="Unit">Unit</label>
+          <select class="form-control" id="assApplicantDesignation" name="assApplicantDesignation" [(ngModel)]="newprojectdemand.building">
+            <option value="" disabled selected>Select</option>
+            <ng-container *ngFor="let Projects of Project">
+              <ng-container *ngIf="Projects.status">
+                <option [ngValue]="Projects.projectprogressType">{{ Projects.projectprogressType }}</option>
+              </ng-container>
+            </ng-container>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="demand">Demands %</label>
+          <input type="text" class="form-control" id="demand" placeholder="Enter demand" [(ngModel)]="newprojectdemand.demand">
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input type="text" class="form-control" id="description" placeholder="Enter Description" [(ngModel)]="newprojectdemand.description">
+        </div>
+      </div>
+      <div class="col-md-2 d-flex align-items-end">
+        <button type="submit" class="btn btn-primary">Add</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+</div>
+
+<div class="col-md-12 offset-md-12">
+  <table class="table table-striped" style="overflow-y: auto; width: 100%;">
+    <thead>
+      <tr>
+        <th scope="col">Date</th>
+        <th scope="col">Progress Name</th>
+        <th scope="col">Building</th>
+        <th scope="col">Demand</th>
+        <th scope="col">Description</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let demand of ProjectDemandGet ">
+        <td>{{ demand.date}}</td>
+        <td>{{ demand.progressName}}</td>
+        <td>{{ demand.building}}</td> 
+        <td>{{ demand.demand}}</td> 
+        <td>{{ demand.description}}</td> 
+        <td>   
+          <div style="display: flex; gap: 10px; padding: 5px;">
+            <button class="btn btn-outline-danger mx-2 mt-4" (click)="deleteprojectdemand(demand._id)">Delete</button>
+          </div>        
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+.invalid-input {
+    border: 1px solid red;
+}.selected-amenities {
+    margin-top: 10px;
+  }
+  
+  .amenity {
+    display: inline-block;
+    background-color: #e0e0e0;
+    padding: 5px 10px;
+    border-radius: 3px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+  }
+  
+  .remove-amenity {
+    cursor: pointer;
+    margin-left: 5px;
+    color: red;
+  }
+  

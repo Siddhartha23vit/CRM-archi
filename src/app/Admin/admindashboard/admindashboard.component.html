@@ -1,0 +1,156 @@
+<div class="dashboard-container">
+    <!-- Header Section -->
+    <div class="dashboard-header">
+        <div class="header-content">
+            <div class="company-logo">
+                <h1><i class="fas fa-cube"></i> CRM</h1>
+                <span class="company-tagline">Manage Better, Grow Faster</span>
+            </div>
+            <div class="header-actions">
+                <div class="date-picker">
+                    <i class="fas fa-calendar"></i>
+                    <span>{{currentDate | date:'mediumDate'}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="performance-banner">
+            <div class="marquee-content">
+                <i class="fas fa-chart-line"></i>
+                <span>CRM - Performance of the Week</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Cards Section -->
+    <div class="stats-grid">
+        <!-- Associates Card -->
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-users"></i>
+            </div>
+            <div class="stat-content">
+                <h3>Associates</h3>
+                <div class="stat-value">{{associateEntries}}</div>
+                <div class="stat-change positive">
+                    <i class="fas fa-arrow-up"></i>
+                    <span>12% increase</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Customers Card -->
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-user-tie"></i>
+            </div>
+            <div class="stat-content">
+                <h3>Customers</h3>
+                <div class="stat-value">{{customerEntries}}</div>
+                <div class="stat-change positive">
+                    <i class="fas fa-arrow-up"></i>
+                    <span>8% increase</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Projects Card -->
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-project-diagram"></i>
+            </div>
+            <div class="stat-content">
+                <h3>Projects</h3>
+                <div class="stat-value">{{projectEntries}}</div>
+                <div class="stat-change positive">
+                    <i class="fas fa-arrow-up"></i>
+                    <span>15% increase</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Revenue Card -->
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-rupee-sign"></i>
+            </div>
+            <div class="stat-content">
+                <h3>Revenue</h3>
+                <div class="stat-value">₹{{revenueAmount}}</div>
+                <div class="stat-change positive">
+                    <i class="fas fa-arrow-up"></i>
+                    <span>20% increase</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts Section -->
+    <div class="charts-section">
+        <div class="chart-container">
+            <div class="chart-header">
+                <h3>Sales Overview</h3>
+                <div class="chart-actions">
+                    <button class="btn-filter active">Weekly</button>
+                    <button class="btn-filter">Monthly</button>
+                    <button class="btn-filter">Yearly</button>
+                </div>
+            </div>
+            <div class="chart-content">
+                <!-- Add your chart component here -->
+                <div class="placeholder-chart">
+                    Chart Placeholder
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Activity Section -->
+    <div class="activity-section">
+        <div class="section-header">
+            <h3>Recent Activities</h3>
+            <button class="btn-view-all">View All</button>
+        </div>
+        <div class="activity-list">
+            <div class="activity-item">
+                <div class="activity-icon">
+                    <i class="fas fa-file-signature"></i>
+                </div>
+                <div class="activity-details">
+                    <h4>New Contract Signed</h4>
+                    <p>Project Green Valley - Phase 2</p>
+                    <span class="activity-time">2 hours ago</span>
+                </div>
+                <div class="activity-status success">
+                    Completed
+                </div>
+            </div>
+            <div class="activity-item">
+                <div class="activity-icon">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <div class="activity-details">
+                    <h4>New Customer Added</h4>
+                    <p>John Doe - Premium Property</p>
+                    <span class="activity-time">5 hours ago</span>
+                </div>
+                <div class="activity-status pending">
+                    In Progress
+                </div>
+            </div>
+            <div class="activity-item">
+                <div class="activity-icon">
+                    <i class="fas fa-money-bill-wave"></i>
+                </div>
+                <div class="activity-details">
+                    <h4>Payment Received</h4>
+                    <p>Blue Heights Project</p>
+                    <span class="activity-time">1 day ago</span>
+                </div>
+                <div class="activity-status success">
+                    Completed
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

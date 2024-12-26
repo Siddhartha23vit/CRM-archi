@@ -1,0 +1,139 @@
+<mat-toolbar [ngClass]="{'bg-dark': selectedColor === 'dark', 'bg-primary': selectedColor === 'primary', 'bg-secondary': selectedColor === 'secondary', 'bg-success': selectedColor === 'success', 'bg-danger': selectedColor === 'danger', 'bg-warning': selectedColor === 'warning', 'bg-info': selectedColor === 'info'}">
+  <mat-toolbar-row class="navbar-brand" style="color: aliceblue;">
+    <h3 (click)="opened=!opened"><i class="fa-solid fa-bars"></i></h3>
+    <h2>Custom CRM</h2>
+    <h3 (click)="toggleColor('dark')" class="color-box bg-dark"></h3>
+    <h3 (click)="toggleColor('primary')" class="color-box bg-primary"></h3>
+    <h3 (click)="toggleColor('secondary')" class="color-box bg-secondary"></h3>
+    <h3 (click)="toggleColor('success')" class="color-box bg-success"></h3>
+    <h3 (click)="toggleColor('danger')" class="color-box bg-danger"></h3>
+    <h3 (click)="toggleColor('warning')" class="color-box bg-warning"></h3>
+    <h3 (click)="toggleColor('info')" class="color-box bg-info"></h3>
+    
+  </mat-toolbar-row>
+</mat-toolbar>
+
+
+<mat-sidenav-container >
+  <mat-sidenav [(opened)]="opened" mode="side" class="bg-dark" [ngClass]="{'bg-dark': selectedColor === 'dark', 'bg-primary': selectedColor === 'primary', 'bg-secondary': selectedColor === 'secondary', 'bg-success': selectedColor === 'success', 'bg-danger': selectedColor === 'danger', 'bg-warning': selectedColor === 'warning', 'bg-info': selectedColor === 'info'}">
+    <ul class="side-nav-links">
+      <a [routerLink]="['AdminDashboard']"><img src="assets/custom-crm-logo.png"></a>
+      <li [routerLink]="['AdminDashboard']" style="display: inline-flex; align-items: center;">
+     <img src="assets/Icons/Dashboard_1.png" style="width: 45px; margin-right: 5px; margin-bottom: -4px;">
+        <a style="margin-left:3px; margin-top: -5px; font-size: large;"> Dashboard </a>
+    
+      </li>
+      
+      
+      
+          <li [routerLink]="['AdminGeneralMaster']" style="display: inline-flex; align-items: center;">
+            <img src="assets/Icons/General Master.png" style="width: 45px; margin-right: 5px; margin-bottom: -4px;">
+            <a style="margin-left:3px; margin-top: -5px; font-size: large;">General Master</a></li>
+
+
+      <li [routerLink]="['AdminAttendance']" style="display: inline-flex; align-items: center;">
+        <img src="assets/Icons/attendance.png" style="width: 45px; margin-right: 5px; margin-bottom: -4px;">
+        <a style="margin-left:3px; margin-top: -5px; font-size: large;">Attendance</a></li>
+
+        <li (click)="toggleLeadsDropdown = !toggleLeadsDropdown" class="leads" [class.active]="toggleLeadsDropdown">
+          <img src="assets/Icons/Project.png" style="width: 45px; margin-right: 5px; margin-bottom: -4px;">
+          <a style="cursor: pointer; margin-left: 3px; font-size: large;">Project <i class="fa-solid fa-chevron-down"></i></a>
+          <ul *ngIf="toggleLeadsDropdown" style="margin-left: -10px;">
+              <li [routerLink]="['AdminProjectList']" (click)="$event.stopPropagation()">
+                <img src="assets/Icons/Projectlist.png" style="width: 30px; margin-right: 5px;">
+                <a>Project List</a>
+              </li>
+              <li [routerLink]="['AdminBuildingList']" (click)="$event.stopPropagation()">
+                <img src="assets/Icons/Buildinglist.png" style="width: 30px; margin-right: 5px;">
+                <a>Building List</a>
+              </li>
+              <li [routerLink]="['AdminFloorList']" (click)="$event.stopPropagation()">
+                <img src="assets/Icons/floorlist.png" style="width: 30px; margin-right: 5px;">
+                <a>Floor List</a>
+              </li>
+              <li [routerLink]="['AdminFlatList']" (click)="$event.stopPropagation()">
+                <img src="assets/Icons/faltlist.png" style="width: 30px; margin-right: 5px;">
+                <a>Flat List</a>
+              </li>
+              <li [routerLink]="['AdminPlotList']" (click)="$event.stopPropagation()">
+                <img src="assets/Icons/plotlist.png" style="width: 30px; margin-right: 5px;">
+                <a>Plot List</a>
+              </li>
+              <li [routerLink]="['AdminRawHouseList']" (click)="$event.stopPropagation()" style="white-space: nowrap;">
+                <img src="assets/Icons/Rawhouse.png" style="width: 30px; margin-right: 5px" >
+                <a>Row House List</a>
+              </li>
+              <li [routerLink]="['AdminFarmLandList']" (click)="$event.stopPropagation()">
+                <img src="assets/Icons/farmland.png" style="width: 30px; margin-right: 5px;">
+                <a>Farm Land List</a>
+              </li>
+        </ul>
+    </li>
+  <li (click)="toggleAcciocateDropdown = !toggleAcciocateDropdown" class="leads" [class.active]="toggleAcciocateDropdown" style="white-space: nowrap;">
+    <img src="assets/Icons/Associateform.png" style="width: 45px; margin-right: 5px; margin-bottom: -4px; white-space: nowrap; ">
+    <a style="cursor: pointer; margin-left: 3px; font-size: large; white-space: nowrap;">Associate Form <i class="fa-solid fa-chevron-down"></i></a>
+    <ul *ngIf="toggleAcciocateDropdown" style="margin-left: -10px; white-space: nowrap;">
+        <li [routerLink]="['AdminAssociate']" (click)="$event.stopPropagation()">
+          <img src="assets/Icons/associatesformlist.png" style="width: 30px; margin-right: 5px;">
+
+          <a>Associate Form List</a></li>
+        <li [routerLink]="['AdminCommissionLab']" (click)="$event.stopPropagation()">
+          <img src="assets/Icons/commissionlab.png" style="width: 30px; margin-right: 5px;">
+          <a>Commission Lab</a></li>
+    </ul>
+</li>
+    <li [routerLink]="['AdminCustomer']" style="display: inline-flex; align-items: center;">
+      <img src="assets/Icons/Customers png.png" style="width: 45px; margin-right: 5px; margin-bottom: -4px;">
+      <a style="margin-left:3px; margin-top: -5px; font-size: large;">Customer</a></li>
+    <li [routerLink]="['AdminLead']" style="display: inline-flex; align-items: center;">
+      <img src="assets/Icons/Leads.png" style="width: 45px; margin-right: 5px; margin-bottom: -4px;">
+      <a style="margin-left:3px; margin-top: -5px; font-size: large;">Lead</a></li>
+
+
+      <li [routerLink]="['AdminSiteVisit']"  style="display: inline-flex; align-items: center;">
+        <img src="assets/Icons/SiteVisit.png" style="width: 45px; margin-right: 5px; margin-bottom: -4px;">
+        <a style="margin-left:3px; margin-top: -5px; font-size: large;">Site Visit</a></li>
+
+
+      <li [routerLink]="['AdminBooking']" style="display: inline-flex; align-items: center;">
+        <img src="assets/Icons/booking.png" style="width: 45px; margin-right: 5px; margin-bottom: -4px;">
+        <a style="margin-left:3px; margin-top: -5px; font-size: large;">Booking</a></li>
+
+<li [routerLink]="['AdminProjectDenamd']" style="display: inline-flex; align-items: center;">
+  <img src="assets/Icons/demand.png" style="width: 45px; margin-right: 5px; margin-bottom: -4px;">
+  <a style="margin-left:3px; margin-top: -5px; font-size: large;">Project Demand</a></li>
+<li [routerLink]="['AdminBookingDemand']" style="display: inline-flex; align-items: center;">
+  <img src="assets/Icons/bookingdemand.png" style="width: 45px; margin-right: 5px; margin-bottom: -4px;">
+  <a style="margin-left:3px; margin-top: -5px; font-size: large;">Booking Demand</a></li>
+
+        <li (click)="toggleSettingDropdown = !toggleSettingDropdown" class="leads" [class.active]="toggleSettingDropdown" style="white-space: nowrap;">
+          <img src="assets/Icons/settings png.png" style="width: 45px; margin-right: 5px; margin-bottom: -4px; white-space: nowrap; ">
+          <a style="cursor: pointer; margin-left: 3px; font-size: large; white-space: nowrap;">Settings <i class="fa-solid fa-chevron-down"></i></a>
+          <ul *ngIf="toggleSettingDropdown" style="margin-left: -10px; white-space: nowrap;">
+              <li [routerLink]="['AdminSetting']" (click)="$event.stopPropagation()">
+                <img src="" style="width: 30px; margin-right: 5px;">
+                <a>User Permission</a></li>
+          </ul>
+      </li>
+
+ 
+      <li [routerLink]="['AdminLicense']" style="display: inline-flex; align-items: center;">
+        <img src="assets/Icons/Licensing png.png" style="width: 45px; margin-right: 5px; margin-bottom: -4px;">
+        <a style="margin-left:3px; margin-top: -5px; font-size: large;">License</a></li>
+
+      <li [routerLink]="['AdminFAQ']" style="display: inline-flex; align-items: center;">
+        <img src="assets/Icons/FAQ png.png" style="width: 45px; margin-right: 5px; margin-bottom: -4px;">
+        <a style="margin-left:3px; margin-top: -5px; font-size: large;">FAQ</a></li>
+      <li [routerLink]="['AdminPrivacyPolicy']" style="display: inline-flex; align-items: center;">
+        <img src="assets/Icons/privacy-policy.png" style="width: 45px; margin-right: 5px; margin-bottom: -4px;">
+        <a style="margin-left:3px; margin-top: -5px; font-size: large;">Privacy Policy</a></li>
+      <li [routerLink]="['']"style="display: inline-flex; align-items: center;">
+        <img src="assets/Icons/Logout_1.png" style="width: 45px; margin-right: 5px; margin-bottom: -4px;">
+        <a (click)="logout()" style="margin-left:3px; margin-top: -5px; font-size: large;">Log Out</a></li>
+    </ul>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

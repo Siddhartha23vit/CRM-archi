@@ -1,0 +1,155 @@
+<div class="container mt-3">
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h1 class="mb-0">Farm Land Management</h1>
+            <div class="btn-group">
+                <button class="btn btn-outline-success me-2">
+                    <i class="fas fa-plus-circle me-1"></i>Add New Project
+                </button>
+                <button class="btn btn-outline-success">
+                    <i class="fas fa-list me-1"></i>Project List
+                </button>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="filter-section mb-4">
+                <div class="row g-3">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label class="form-label">Project</label>
+                            <select class="form-select" id="projectName" name="searchType" [(ngModel)]="selectedProject" (change)="onProjectSelected()">
+                                <option value="" disabled selected>Select Project</option>
+                                <ng-container *ngFor="let project of projects">
+                                    <ng-container *ngIf="project.totalfarmLand">
+                                        <option [ngValue]="project">{{ project.projectName }}</option>
+                                    </ng-container>
+                                </ng-container>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-end">
+                        <button class="btn btn-success w-100">
+                            <i class="fas fa-search me-1"></i>Search
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="selectedProject" class="project-info mb-4">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5 class="mb-1">{{ selectedProject.projectName }}</h5>
+                                <p class="text-muted mb-0">Total Farm Lands: {{ selectedProject.totalfarmLand }}</p>
+                            </div>
+                            <div class="text-end">
+                                <p class="text-muted mb-0">Start Date: {{ selectedProject.startDate }}</p>
+                                <p class="text-muted mb-0">Completion: {{ selectedProject.completionDate }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-responsive" *ngIf="selectedProject">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Number<span class="text-danger">*</span></th>
+                            <th>Width<span class="text-danger">*</span></th>
+                            <th>Depth<span class="text-danger">*</span></th>
+                            <th>Total Size<span class="text-danger">*</span></th>
+                            <th>Type<span class="text-danger">*</span></th>
+                            <th>Facing<span class="text-danger">*</span></th>
+                            <th>Rate<span class="text-danger">*</span></th>
+                            <th>PLC Charges %</th>
+                            <th>Amount<span class="text-danger">*</span></th>
+                            <th>Guideline Value</th>
+                            <th>Inventory Type</th>
+                            <th>Status<span class="text-danger">*</span></th>
+                            <th>Remark</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngFor="let farmLand of FarmLandInputs">
+                            <tr>
+                                <td>
+                                    <input type="text" placeholder="Enter Number" class="form-control form-control-sm" [(ngModel)]="farmLand.farmLandName">
+                                </td>
+                                <td>
+                                    <input type="number" placeholder="Width" class="form-control form-control-sm" [(ngModel)]="farmLand.farmLandWidth" min="0">
+                                </td>
+                                <td>
+                                    <input type="number" placeholder="Depth" class="form-control form-control-sm" [(ngModel)]="farmLand.farmLandDepth" min="0">
+                                </td>
+                                <td>
+                                    <input type="number" placeholder="Total Size" class="form-control form-control-sm" [(ngModel)]="farmLand.totalSize" min="0">
+                                </td>
+                                <td>
+                                    <select class="form-select form-select-sm" [(ngModel)]="farmLand.farmlandtype">
+                                        <option value="" disabled selected>Select Type</option>
+                                        <ng-container *ngFor="let Type of Farmland">
+                                            <ng-container *ngIf="Type.status">
+                                                <option [ngValue]="Type.farmlandType">{{ Type.farmlandType }}</option>
+                                            </ng-container>
+                                        </ng-container>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="form-select form-select-sm" [(ngModel)]="farmLand.facing">
+                                        <option value="" disabled selected>Select Facing</option>
+                                        <ng-container *ngFor="let facing of FacingSide">
+                                            <ng-container *ngIf="facing.status">
+                                                <option [ngValue]="facing.facing">{{ facing.facing }}</option>
+                                            </ng-container>
+                                        </ng-container>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="number" placeholder="Rate" class="form-control form-control-sm" [(ngModel)]="farmLand.FramLandRate" min="0">
+                                </td>
+                                <td>
+                                    <input type="number" placeholder="PLC %" class="form-control form-control-sm" [(ngModel)]="farmLand.plcCharge" min="0">
+                                </td>
+                                <td>
+                                    <input type="number" placeholder="Amount" class="form-control form-control-sm" [(ngModel)]="farmLand.amount" min="0">
+                                </td>
+                                <td>
+                                    <input type="number" placeholder="Value" class="form-control form-control-sm" [(ngModel)]="farmLand.guideLineValue" min="0">
+                                </td>
+                                <td>
+                                    <select class="form-select form-select-sm" [(ngModel)]="farmLand.inventoryType">
+                                        <option value="" disabled selected>Select Type</option>
+                                        <option value="Agriculture">Agriculture</option>
+                                        <option value="nonAgriculture">Non Agriculture</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="form-select form-select-sm" [(ngModel)]="farmLand.status">
+                                        <option value="" disabled selected>Select Status</option>
+                                        <option value="UnderConstruction">Under Construction</option>
+                                        <option value="Available">Available</option>
+                                        <option value="Hold">Hold</option>
+                                        <option value="Booked">Booked</option>
+                                        <option value="Register">Register</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm" [(ngModel)]="farmLand.remark" placeholder="Enter Remark">
+                                </td>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="text-center mt-4" *ngIf="selectedProject">
+                <button class="btn btn-success" (click)="addFarmLandList()">
+                    <i class="fas fa-save me-1"></i>Save Changes
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

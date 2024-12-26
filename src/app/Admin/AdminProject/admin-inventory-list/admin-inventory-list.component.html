@@ -1,0 +1,151 @@
+<div class="container mt-3  ">
+    <div class="card">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h1>Inventory</h1> <div class="btn-group">
+           <button class="btn btn-outline-success" >Add New Project</button>
+           <button class="btn btn-outline-success">Project List</button>
+         </div>
+      </div>
+      <div class="card-body">
+       <div class="container mt-3  ">
+           <div class="card">
+            <div class="container mt-3">
+               <div class="row">
+                   <div class="col-4">
+                       <div class="input-group">
+                         <input type="text" id="Search" class="form-control mr-2" placeholder="Select Project">
+                         <div class="input-group-append">
+                         </div>
+                       </div>
+                     </div>
+                     <div class="col-3">
+                        <div class="input-group">
+                          <input type="text" id="Search" class="form-control mr-2" placeholder="Select Building">
+                          <div class="input-group-append">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-2">
+                        <div class="input-group">
+                          <input type="text" id="Search" class="form-control mr-2" placeholder="Select Floor">
+                          <div class="input-group-append">
+
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-2">
+                        <div class="input-group">
+                          <input type="text" id="Search" class="form-control mr-2" placeholder="Page 1">
+                          <div class="input-group-append">
+                            <button class="btn btn-success" type="button">Search</button>
+
+                          </div>
+                        </div>
+                      </div>
+                     
+                     
+                     
+               </div>
+
+            </div>
+             <div class="card-body">
+               
+               <table class="table table-bordered mt-3">
+                   <thead>
+                       <tr>
+                           <th scope="col">
+                             Number</th>
+                            <th scope="col">Width</th>
+
+                           <th scope="col">Depth	</th>
+                           <th scope="col">Total Size</th>
+
+
+                           <th scope="col"> Facing</th>
+                           <th scope="col">Price</th>
+                           <th scope="col">PLC Charges %</th>
+                           <th scope="col">Cost(Lacs)	</th>
+                           <th scope="col">Guideline Value</th>
+                           <th scope="col">Inventory Type</th>
+                           <th scope="col">Status</th>
+                           <th scope="col">Remark</th>
+                           <th scope="col">Action</th>
+                       </tr>
+                   </thead>
+                   <tbody>
+                       <tr class="gap-row"></tr>
+                       <tr>
+                           <td>
+                               <input type="text" id="PlotNumber" class="form-control">
+                           </td>
+                           <td>
+                               <input type="text" id="Width" class="form-control">
+
+                           </td>
+                           <td>
+                               <input type="text" id="Depth" class="form-control">
+
+                           </td>
+                           <td>
+                            <input type="text" id="BuildUp" class="form-control">
+
+                        </td>
+                           <td>  
+                               <select class="form-control" id="FlatFacing" name="FlatFacing" placeholder="Select Flat Facing" required>
+                                   <option value="" disabled selected>Select Facing</option>
+                                   <option value="East">East</option>
+                                   <option value="West">West</option>
+                                   <option value="North">North</option>
+                                   <option value="South">South</option>
+
+                               </select>
+                           </td>
+                           
+                           
+                           <td>
+                               <input type="text" id="price" class="form-control">
+
+                           </td>
+                           <td>
+                               <input type="text" id="plcCharges" class="form-control">
+
+                           </td>
+                           <td>
+                               <input type="text" id="Amenities" class="form-control">
+
+                           </td>
+                           <td>
+                            <input type="text" id="Amenities" class="form-control">
+
+                        </td> <td>
+                            <input type="text" id="Amenities" class="form-control">
+
+                        </td>
+                        <td>
+                            <input type="text" id="Amenities" class="form-control">
+
+                        </td>
+                           <td>
+                               <input type="text" id="Remark" class="form-control" placeholder="Remark">
+
+                           </td>
+                           <td> <div style="display: flex; gap: 10px; padding: 5px;">
+                               <button class="btn btn-outline-danger">Delete</button>
+                               <button  class="btn btn-outline-warning" >Update</button>
+                             </div> 
+
+                           </td>
+
+                       </tr>
+                   </tbody>
+               </table>
+               
+              
+       </div>
+       </div>
+      </div>
+      
+
+</div>
+</div>
+</div>

@@ -1,0 +1,64 @@
+.invalid-input{
+    border: 1px solid red;
+}
+.col-md-8 {
+    padding-left: 10%;
+  }
+  ::ng-deep table.with-scroll {
+    overflow-y: auto;
+    height: calc(80vh - 50px); /* Adjust height as needed */
+  }
+  
+  ::ng-deep table.with-scroll::-webkit-scrollbar {
+    width: 10px; /* adjust the width as needed */
+  }
+  
+  ::ng-deep table.with-scroll::-webkit-scrollbar-thumb {
+    background-color: #ccc; /* color of the scrollbar thumb */
+    border-radius: 5px; /* round corners */
+  }
+  
+  ::ng-deep table.with-scroll::-webkit-scrollbar-track {
+    background-color: transparent; /* make scrollbar track transparent */
+  }
+  
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    margin: 0 8px;
+  }
+  
+  .btn-submit {
+    background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+    color: white;
+  }
+  
+  .btn-submit:hover {
+    background: linear-gradient(135deg, #1976D2 0%, #1565C0 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(33, 150, 243, 0.2);
+  }
+  
+  .btn-reset {
+    background: linear-gradient(135deg, #90CAF9 0%, #64B5F6 100%);
+    color: white;
+  }
+  
+  .btn-reset:hover {
+    background: linear-gradient(135deg, #64B5F6 0%, #42A5F5 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(33, 150, 243, 0.2);
+  }
+  
+  .btn i {
+    font-size: 16px;
+  }
+  
+  

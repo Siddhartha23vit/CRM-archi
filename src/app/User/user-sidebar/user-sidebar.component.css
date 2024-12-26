@@ -1,0 +1,77 @@
+.side-nav-button {
+    font-size: 24px;
+    padding: 15px;
+    cursor: pointer;
+}
+.side-nav {
+    width: 250px;
+    height: 100%;
+    background-color: #333;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    transition: left 0.3s ease;
+    overflow: hidden; /* Hide any overflow content */
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+}
+
+.side-nav.open {
+    left: 0;
+}
+
+.close-button {
+    color: white;
+    text-decoration: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 29px;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.side-nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 50px 0 0 0;
+    overflow-y: auto;
+    height: calc(100% - 50px);
+    cursor: pointer;
+}
+
+.side-nav-links li {
+    padding: 20px;
+    border-bottom: 1px solid #555;
+}
+.side-nav-links li:hover {
+    background-color: #333;
+}
+
+.side-nav-links li:last-child {
+    border-bottom: none;
+}
+
+.side-nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.side-nav::-webkit-scrollbar {
+    width: 0 !important;
+}
+
+.side-nav::-webkit-scrollbar-thumb {
+    background-color: transparent !important; 
+}
+
+.side-nav::-webkit-scrollbar-track {
+    background-color: transparent !important; 
+}
+.centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }

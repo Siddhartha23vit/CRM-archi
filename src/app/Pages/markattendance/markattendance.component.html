@@ -1,0 +1,109 @@
+<div class="container-fluid p-4">
+  <div class="card shadow">
+    <div class="card-header bg-white border-0">
+      <div class="d-flex justify-content-between align-items-center">
+        <h4 class="mb-0 text-primary">Mark Attendance</h4>
+        <button class="btn btn-outline-secondary" [routerLink]="['/Admin', 'AdminAttendance']">
+          <i class="fas fa-list me-1"></i> Back to List
+        </button>
+      </div>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="addattendance()" class="needs-validation" novalidate>
+        <div class="row g-4">
+          <!-- Date Field -->
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="attendanceDateTime" class="form-label">
+                Attendance Date <span class="text-danger">*</span>
+              </label>
+              <input 
+                type="date" 
+                class="form-control" 
+                id="attendanceDateTime" 
+                [(ngModel)]="newmarkattendance.Date" 
+                name="Date"
+                required>
+            </div>
+          </div>
+
+          <!-- Project Field -->
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="project" class="form-label">Project</label>
+              <select 
+                class="form-select" 
+                id="project" 
+                name="project" 
+                [(ngModel)]="newmarkattendance.Project">
+                <option value="" disabled selected>Select Project</option>
+                <option *ngFor="let item of projects" [ngValue]="item.projectName">
+                  {{ item.projectName }}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <!-- User Field -->
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="user" class="form-label">
+                User <span class="text-danger">*</span>
+              </label>
+              <select 
+                class="form-select" 
+                id="user" 
+                name="user" 
+                [(ngModel)]="newmarkattendance.Name"
+                required>
+                <option value="" disabled selected>Select User</option>
+                <option *ngFor="let item of associates" [ngValue]="item.fullName">
+                  {{ item.fullName }}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Status Field -->
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="presentAbsent" class="form-label">
+                Status <span class="text-danger">*</span>
+              </label>
+              <select 
+                class="form-select" 
+                id="presentAbsent" 
+                name="presentAbsent" 
+                [(ngModel)]="newmarkattendance.status"
+                required>
+                <option value="Present">Present</option>
+                <option value="Absent">Absent</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Remark Field -->
+          <div class="col-12">
+            <div class="form-group">
+              <label for="attendanceRemark" class="form-label">Remarks</label>
+              <textarea 
+                class="form-control" 
+                id="attendanceRemark" 
+                rows="3" 
+                [(ngModel)]="newmarkattendance.Remark" 
+                name="Remark"
+                placeholder="Enter any additional remarks here..."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="d-flex justify-content-center mt-4">
+          <button type="submit" class="btn btn-primary px-4 py-2">
+            <i class="fas fa-save me-2"></i> Save Attendance
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

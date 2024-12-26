@@ -1,0 +1,80 @@
+<h2 class="px-4 py-3 text-2xl font-bold text-gray-800">Commission</h2>
+
+<div class="container-fluid px-4">
+    <div class="card">
+        <div class="card-header bg-white d-flex align-items-center justify-content-between py-3 border-0">
+            <h2 class="h3 mb-0">Slab</h2>
+            <button class="btn btn-success d-flex align-items-center gap-2" [routerLink]="['/Admin','AdminAssociate']">
+                <i class="fas fa-users"></i>
+                Associate List
+            </button>
+        </div>
+        <div class="card-body p-4">
+            <div class="card bg-light">
+                <div class="card-body">
+                    <!-- Search Section -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group mb-4">
+                                <label for="assApplicantDesignation" class="form-label mb-2">
+                                    Sponsor By<span class="text-danger ms-1">*</span>
+                                </label>
+                                <div class="d-flex gap-3">
+                                    <select 
+                                        class="form-select"
+                                        id="assApplicantDesignation"
+                                        name="assApplicantDesignation"
+                                        required
+                                        [(ngModel)]="searchdes">
+                                        <option value="" selected>All</option>
+                                        <ng-container *ngFor="let designation of designations">
+                                            <option [value]="designation">{{designation}}</option>
+                                        </ng-container>
+                                    </select>
+                                    <button class="btn btn-success d-flex align-items-center gap-2" (click)="searchAss()">
+                                        <i class="fas fa-search"></i>
+                                        Search
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Table Section -->
+                    <div class="table-responsive mt-4">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="text-center py-3">S/No.</th>
+                                    <th scope="col" class="text-center py-3">ID</th>
+                                    <th scope="col" class="text-center py-3">Designation</th>
+                                    <th scope="col" class="text-center py-3">Associate Name</th>
+                                    <th scope="col" class="text-center py-3">Sponsor Name</th>
+                                    <th scope="col" class="text-center py-3">Sponsor Designation</th>
+                                    <th scope="col" class="text-center py-3">Sponsor Commission</th>
+                                    <th scope="col" class="text-center py-3">Commission</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let associate of associates; let i = index">
+                                    <td class="text-center">{{i + 1}}</td>
+                                    <td class="text-center">{{associate.uniqueId}}</td>
+                                    <td class="text-center">{{associate.applicantDesignation}}</td>
+                                    <td class="text-center">{{associate.fullName}}</td>
+                                    <td class="text-center">{{associate.sponsorBy}}</td>
+                                    <td class="text-center">{{associate.sponsorDesignation}}</td>
+                                    <td class="text-center">
+                                        <span class="fw-semibold">{{associate.Sponsorcommission}}%</span>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="fw-semibold">{{associate.commission}}%</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

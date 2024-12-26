@@ -1,0 +1,43 @@
+.text-success {
+  color: #3498db !important;
+}
+
+.bg-success.bg-opacity-10 {
+  background: rgba(52, 152, 219, 0.1) !important;
+}
+
+.border-success {
+  border-color: #3498db !important;
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #3498db, #2980b9) !important;
+  border: none !important;
+}
+
+.btn-success:hover {
+  background: linear-gradient(135deg, #2980b9, #2c3e50) !important;
+}
+
+.btn-outline-success {
+  color: #3498db !important;
+  border-color: #3498db !important;
+}
+
+.btn-outline-success:hover {
+  background: linear-gradient(135deg, #3498db, #2980b9) !important;
+  color: white !important;
+  border-color: transparent !important;
+}
+
+/* Form Controls */
+.form-select.border-success:focus {
+  border-color: #3498db !important;
+  box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25) !important;
+}
+
+/* Badge */
+.badge.bg-success.bg-opacity-10 {
+  background: rgba(52, 152, 219, 0.1) !important;
+  color: #3498db !important;
+} 

@@ -1,0 +1,80 @@
+.table-scrollable {
+    overflow-x: auto;
+    overflow-y: hidden; 
+    max-height: 100%;
+}
+  
+.table-scrollable::-webkit-scrollbar {
+    display: none;
+}
+  
+.table-bordered th,
+.table-bordered td {
+    border: 1px solid #dee2e6;
+    white-space: normal; 
+}
+  
+.table-bordered th {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+}
+  
+.table-scrollable table {
+    table-layout: fixed; 
+    width:100%; 
+}
+
+.action-column,.register-column {
+    width: 200px; 
+}
+
+.address-column{
+    width: 300px;
+}
+
+/* Button Styles */
+.btn-success {
+    background: linear-gradient(135deg, #3498db, #2980b9) !important;
+    border: none !important;
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #2980b9, #2c3e50) !important;
+}
+
+.btn-outline-success {
+    color: #3498db !important;
+    border-color: #3498db !important;
+}
+
+.btn-outline-success:hover {
+    background: linear-gradient(135deg, #3498db, #2980b9) !important;
+    color: white !important;
+    border-color: transparent !important;
+}
+
+/* Text Colors */
+.text-success {
+    color: #3498db !important;
+}
+
+/* Backgrounds */
+.bg-success.bg-opacity-10 {
+    background: rgba(52, 152, 219, 0.1) !important;
+}
+
+.border-success {
+    border-color: #3498db !important;
+}
+
+/* Badge */
+.badge.bg-success.bg-opacity-10 {
+    background: rgba(52, 152, 219, 0.1) !important;
+    color: #3498db !important;
+}
+
+/* Form Controls */
+.form-select.border-success:focus {
+    border-color: #3498db !important;
+    box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25) !important;
+}

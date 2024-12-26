@@ -1,0 +1,82 @@
+<div class="row mt-2">
+  <div class="col-md-4" style="position: fixed;">
+    <form (ngSubmit)="isUpdating ? updateinquiry() : submitInquiry()" id="Inquiry" #InquiryForm="ngForm">
+      <div class="form-group mx-3">
+            <label for="Inquiry" class="px-3 py-2">Inquiry Status <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="Inquiry" name="Inquiry" placeholder="Enter Inquiry Status" [(ngModel)]="newInquiry.inquiryStatus" required #inquiryStatus="ngModel"
+            [class.invalid-input]="InquiryForm.submitted && inquiryStatus.invalid">
+          </div>
+          <div class="form-group mx-3">
+            <label for="Inquiry" class="px-3 py-2">Inquiry Alias</label>
+            <input type="text" class="form-control" id="InquiryAlias" name="InquiryAlias" placeholder="Enter Inquiry Status Alias" [(ngModel)]="newInquiry.inquiryAlias">
+
+          </div>
+          <div class="form-group mx-3">
+            <label for="state" class="px-3 py-2">Stage Type<span class="text-danger" >*</span></label>
+            <select class="form-control" id="type" name="type" [(ngModel)]="newInquiry.stageType" required #stageType="ngModel"
+            [class.invalid-input]="InquiryForm.submitted && stageType.invalid">
+              <option value="" disabled selected>Select Type</option>
+              <option value="Lead">Lead</option>
+              <option value="Visit">Visit</option>
+              <option value="Booking">Booking</option>
+
+            </select>
+            <div *ngIf="InquiryForm.submitted && stageType.invalid" class="text-danger px-3">
+              Stage Type is Required</div>        
+            </div>
+          <div class="form-check mt-4 mx-5">
+            <h5> <input class="form-check-input" type="checkbox" value="" id="status" name="status" [(ngModel)]="newInquiry.status">
+              <label class="form-check-label" for="status">
+                Active
+              </label>
+            </h5>
+          </div>
+          <div class="mt-4 mx-5">
+            <button id="submitButton" class="btn btn-submit mx-3">
+              <i class="fas fa-save me-2"></i>
+              {{ isUpdating ? 'Update' : 'Submit' }}
+            </button>
+            <button type="reset" class="btn btn-reset mx-3">
+              <i class="fas fa-undo me-2"></i>
+              Reset
+            </button>
+          </div>
+       
+        </form>
+
+    </div>
+    <div class="col-md-8 offset-md-4">
+      <div class="input-group mb-3 sticky-top">
+        <input type="text" class="form-control mr-2" placeholder="Search " [(ngModel)]="searchTerm" (input)="searchInquiry()">
+        <div class="input-group-append">
+          <button class="btn btn-secondary" type="button">Search</button>
+        </div>
+      </div>
+      <table class="table table-striped" style="overflow-y: auto; width: 100%;">
+        <thead>
+          <tr>
+            <th scope="col">Inquiry Status</th>
+            <th scope="col">Stage Type</th>
+            <!-- <th scope="col">Stage Alias</th> -->
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let items of filteredInquiry">
+            <td>{{ items.inquiryStatus }}</td>
+            <!-- <td>{{ items.inquiryAlias }}</td> -->
+            <td>{{ items.stageType}}</td>
+            <td>{{ items.status ? 'Active' : 'Inactive' }}</td> 
+            <td>   
+              <div style="display: flex; gap: 10px; padding: 5px;">
+                <button class="btn btn-outline-danger" (click)="deleteinquiry(items._id)">Delete</button>
+                <button *ngIf="!isUpdating" class="btn btn-outline-warning" (click)="populateFormFields(items._id)">Update</button>
+              </div>        
+            </td>
+          </tr>
+         
+        </tbody>
+      </table>
+    </div>
+  </div>

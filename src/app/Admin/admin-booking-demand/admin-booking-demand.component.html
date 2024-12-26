@@ -1,0 +1,151 @@
+<form>
+    <div class="container mt-3  ">
+     <div class="card">
+       <div class="card-header d-flex justify-content-between align-items-center">
+         <h1>Booking Demand</h1>
+         <button class="btn btn-success btn-lg btn-block mt-3">Search</button>
+
+       </div>
+       <div class="card-body">
+   <div class="row">
+     <div class="col-md-2">
+       <label for="FromDate">From Date:</label>
+       <input type="date" id="FromDate" class="form-control">
+     </div>
+     <div class="col-md-2">
+        <label for="ToDate">To Date:</label>
+        <input type="date" id="ToDate" class="form-control">
+      </div>
+     <div class="col-md-2">
+       <label for="UnitType">Unit type</label>
+       <select class="form-control" id="UnitType" name="UnitType" placeholder="Select Unit Type" required >
+           <option value="" disabled selected>Select Type</option>
+           <option value="Appartment ">Appartment </option>
+           <option value="Plot ">Plot </option>
+           <option value="rowhouse   ">Raw House </option>
+           <option value="FarmLand ">FarmLand </option>
+
+       </select>
+     </div>
+     <div class="col-md-2">
+        <label for="Project">Project</label>
+        <select class="form-control" id="Project" name="Project" placeholder="Select Project" required >
+            <option value="" disabled selected>Select Project</option>
+            <option value="Appartment ">Appartment </option>
+            <option value="Plot ">Plot </option>
+            <option value="rowhouse   ">Raw House </option>
+            <option value="FarmLand ">FarmLand </option>
+ 
+        </select>
+      </div>
+      <div class="col-md-2">
+        <label for="UnitNum">Unit No</label>
+        <select class="form-control" id="UnitNum" name="UnitNum" placeholder="Select Unit Number" required >
+            <option value="" disabled selected>Select Unit Number</option>
+            <option value="Appartment ">Appartment </option>
+            <option value="Plot ">Plot </option>
+            <option value="rowhouse   ">Raw House </option>
+            <option value="FarmLand ">FarmLand </option>
+ 
+        </select>
+      </div>
+      <div class="col-md-2">
+        <label for="UnitSize">Unit Size</label>
+        <input type="text" id="UnitSize" class="form-control">
+      </div>
+      <div class="col-md-2">
+        <label for="Associate">Associate</label>
+        <select class="form-control" id="Associate" name="Associate" placeholder="Select Associate" required >
+            <option value="" disabled selected>Select Associate</option>
+            <option value="Appartment ">Appartment </option>
+            <option value="Plot ">Plot </option>
+            <option value="rowhouse   ">Raw House </option>
+            <option value="FarmLand ">FarmLand </option>
+ 
+        </select>
+      </div>
+    
+     <div class="col-md-2">
+       <label for="CustomerName">Customer Name</label>
+       <input type="text" id="CustomerName" class="form-control">
+     </div>
+     <div class="col-md-2">
+        <label for="CustomerMobileno">Customer Mobile Number</label>
+        <input type="text" id="CustomerMobileno" class="form-control">
+      </div>
+   </div>
+ </div>
+ </div>
+</div>
+</form>
+
+
+<div class="container-fluid mt-3">
+ <div class="card-header d-flex justify-content-between align-items-center" style="background-color: #C0C0C0;">
+   <h1>List</h1>
+   <div class="btn-group">
+     <button class="btn btn-outline-success" [routerLink]="['/Admin', 'AdminCustomer', 'Add']" >ADD</button>
+     <button class="btn btn-outline-success">Import</button>
+     <button class="btn btn-outline-success">Export</button>
+   </div>
+ </div>
+
+ <div class="body mt-4">
+   <div class="row">
+     <div class="col-md-4">
+       <form class="form-inline">
+         <div class="form-group">
+           <input type="text" class="form-control" placeholder="Search">
+         </div>
+       </form>
+     </div>
+    
+     <div class="col-md-4">
+       <div class="d-flex justify-content-center align-items-center">
+         <label for="show" class="px-3 py-2">Select Entries:</label>
+         <select class="custom-select mr-sm-2" id="show" name="show">
+           <option value="10">10</option>
+           <option value="30">30</option>
+           <option value="50">50</option>
+           <option value="70">70</option>
+           <option value="100">100</option>
+         </select>
+       </div>
+     </div>
+     <div class="col-md-4">
+       <div class="btn-group justify-content-end align-items-end">
+         <button class="btn btn-outline-success">PDF</button>
+         <button class="btn btn-outline-success">EXCEL</button>
+         <button class="btn btn-outline-success">Export</button>
+         <button class="btn btn-outline-success">Delete All</button>
+       </div>  
+     </div>
+     
+     
+   </div>
+ </div>
+ 
+ 
+   <table class="table table-bordered mt-3">
+     <thead>
+       <tr>
+         <th scope="col">Action</th>
+         <th scope="col">Booking Date</th>
+         <th scope="col">Unit Type</th>
+         <th scope="col">Project</th>
+         <th scope="col">unit Details</th>
+         <th scope="col">Unit Size</th>
+         <th scope="col">Associate Name</th>
+         <th scope="col">Customer Name</th>
+         <th scope="col">Contact Number</th>
+         
+
+
+       </tr>
+     </thead>
+     <tbody>
+       
+     </tbody>
+
+   </table>
+ </div>

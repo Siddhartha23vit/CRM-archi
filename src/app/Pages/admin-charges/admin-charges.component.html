@@ -1,0 +1,75 @@
+<div class="row mt-2">
+  <div class="col-md-4" style="position: fixed;">
+    <form id="ChargesForm" (ngSubmit)="isUpdating ? updateCharges() : submitCharge()" id="Charge" #ChargesForm="ngForm">
+          <div class="form-group mx-3">
+            <label for="ChargesName" class="px-3 py-2">Charge Name <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="ChargesName" name="ChargesName" placeholder="Enter Charge Name" [(ngModel)]="newCharges.chargeName" required #chargeName="ngModel" [class.invalid-input]="ChargesForm.submitted && chargeName.invalid">
+            <div *ngIf="ChargesForm.submitted && chargeName.invalid" class="text-danger px-3">Charge Name is required</div>
+          </div>
+          <div class="form-group mx-3">
+            <label for="Charges" class="px-3 py-2">Charge Alias</label>
+            <input type="text" class="form-control" id="Charges" name="Charges" placeholder="Enter Charge Alias" [(ngModel)]="newCharges.chargeAlias" required>
+          </div>
+          <div class="form-group mx-3">
+            <label for="state" class="px-3 py-2">Charge Type<span class="text-danger" >*</span></label>
+            <select class="form-control" id="type" name="type" [(ngModel)]="newCharges.chargeType" required #chargeType="ngModel" [class.invalid-input]="ChargesForm.submitted && chargeType.invalid">
+              <option value="" disabled selected>Select Charges</option>
+              <option value="Main">Main</option>
+              <option value="Other">Others</option>
+            </select>
+            <div *ngIf="ChargesForm.submitted && chargeType.invalid" class="text-danger px-3">Charge Type is required</div>
+          </div>
+          <div class="form-check mt-4 mx-5">
+            <h5> <input class="form-check-input" type="checkbox" value="" id="status" name="status" [(ngModel)]="newCharges.status">
+              <label class="form-check-label" for="status">
+                Active
+              </label>
+            </h5>
+          </div>
+          <div class="mt-4 mx-5">
+            <button id="submitButton" class="btn btn-submit mx-3">
+              <i class="fas fa-save me-2"></i>
+              {{ isUpdating ? 'Update' : 'Submit' }}
+            </button>
+            <button type="reset" class="btn btn-reset mx-3">
+              <i class="fas fa-undo me-2"></i>
+              Reset
+            </button>
+          </div>
+       
+        </form>
+
+    </div>  <div class="col-md-8 offset-md-4">
+      <div class="input-group mb-3 sticky-top">
+        <input type="text" class="form-control mr-2" placeholder="Search" [(ngModel)]="searchTerm" (input)="searchCharges()">
+        <div class="input-group-append">
+          <button class="btn btn-secondary" type="button">Search</button>
+        </div>
+      </div>
+      <table class="table table-striped" style="overflow-y: auto; width: 100%;">
+        <thead>
+          <tr>
+            <th scope="col">Charges Name</th>
+            <th scope="col">Charges Alis</th>
+            <th scope="col">Type</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of filteredCharges">
+            <th>{{ item.chargeName }}</th>
+            <td>{{ item.chargeAlias }}</td>
+            <td>{{ item.chargeType }}</td>
+            <td>{{ item.status ? 'Active' : 'Inactive' }}</td> 
+            <td>   
+              <div style="display: flex; gap: 10px; padding: 5px;">
+                <button class="btn btn-outline-danger" (click)="deletecharges(item._id)">Delete</button>
+                <button *ngIf="!isUpdating" class="btn btn-outline-warning" (click)="populateFormFields(item._id)">Update</button>
+              </div>        
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

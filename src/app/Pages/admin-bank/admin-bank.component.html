@@ -1,0 +1,83 @@
+<div class="row mt-2">
+  <div class="col-md-4" style="position: fixed;">
+    <form id="bankForm" (ngSubmit)="isUpdating ? updateBank() : submitBank()" id="Bank" #bankForm="ngForm">
+          <div class="form-group mx-3">
+            <label for="bankName" class="px-3 py-2">Bank Name <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="bankName" name="bankName" [(ngModel)]="newBank.bankName" placeholder="Enter Bank Name" required #bankName="ngModel" [class.invalid-input]="bankForm.submitted && bankName.invalid">
+            <div *ngIf="bankForm.submitted && bankName.invalid" class="text-danger px-3">Bank Name is required</div>
+          </div>
+        
+          <div class="form-group mx-3">
+            <label for="bank" class="px-3 py-2">Bank Alias</label>
+            <input type="text" class="form-control" id="bankAlias" name="bankAlias" [(ngModel)]="newBank.bankAlias" placeholder="Enter Bank Alias" required>
+          </div>
+          <div class="form-group mx-3">
+            <label for="bank" class="px-3 py-2">Contact Person<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="contactPerson" name="contactPerson" [(ngModel)]="newBank.contactPerson" placeholder="Enter contract person name" required #contactPerson="ngModel" [class.invalid-input]="bankForm.submitted && contactPerson.invalid"  maxlength="10">
+            <div *ngIf="bankForm.submitted && contactPerson.invalid" class="text-danger px-3">Contact Person is required</div>
+          </div>
+          <div class="form-group mx-3">
+            <label for="MobileNumber" class="px-3 py-2">Mobile Number<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="MobileNumber" name="mobileNumber" placeholder="Enter Mobile Number" [(ngModel)]="newBank.mobileNumber" required #mobileNumber="ngModel" maxlength="10" [class.invalid-input]="bankForm.submitted && mobileNumber.invalid || (formSubmitted && !isValidMobileNumber())" (blur)="formSubmitted = true">
+            <div *ngIf="bankForm.submitted && mobileNumber.invalid || (formSubmitted && !isValidMobileNumber())" class="text-danger px-3">Mobile Number is required and must be 10 digits</div>
+          </div>
+          <div class="form-check mt-4 mx-5">
+            <h5>
+              <input class="form-check-input" type="checkbox" value="" id="status" name="status" [(ngModel)]="newBank.status">
+              <label class="form-check-label" for="status">
+                Active
+              </label>
+          </h5>
+          </div>
+          <div class="mt-4 mx-5">
+            <button id="submitButton" class="btn btn-submit mx-3">
+              <i class="fas fa-save me-2"></i>
+              {{ isUpdating ? 'Update' : 'Submit' }}
+            </button>
+            <button type="reset" class="btn btn-reset mx-3">
+              <i class="fas fa-undo me-2"></i>
+              Reset
+            </button>
+          </div>
+       
+        </form>
+
+    </div>
+    <div class="col-md-8 offset-md-4">
+      
+
+ <div class="input-group mb-3 sticky-top">
+  <input type="text" class="form-control mr-2" placeholder="Search" [(ngModel)]="searchTerm" (input)="searchBank()">
+  <div class="input-group-append">
+    <button class="btn btn-secondary" type="button">Search</button>
+  </div>
+</div>
+      <table class="table table-striped" style="overflow-y: auto; width: 100%;">
+        <thead>
+          <tr>
+            <th scope="col">Bank Name</th>
+            <th scope="col">Alias</th>
+            <th scope="col">Contact Person</th>
+            <th scope="col">Contact Number</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of filteredBank">
+            <th>{{ item.bankName }}</th>
+            <td>{{ item.bankAlias }}</td>
+            <td>{{ item.contactPerson }}</td>
+            <td>{{ item.mobileNumber }}</td>
+            <td>{{ item.status ? 'Active' : 'Inactive' }}</td> 
+            <td>   
+              <div style="display: flex; gap: 10px; padding: 5px;">
+                <button class="btn btn-outline-danger" (click)="deleteBank(item._id)">Delete</button>
+                <button *ngIf="!isUpdating" class="btn btn-outline-warning" (click)="populateFormFields(item._id)">Update</button>
+              </div>        
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

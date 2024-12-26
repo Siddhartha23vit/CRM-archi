@@ -1,0 +1,115 @@
+<div class="container-fluid mt-3">
+    <h1>Setting</h1>
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h4>User Permission</h4>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="container-fluid mt-3">
+            <div class="card">
+                <div class="container-fluid mt-3">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="input-group">
+                                <select class="form-control" id="RearNumber" name="searchType">
+                                    <option value="" disabled selected>Select</option>
+                                    <ng-container *ngFor="let userType of Usertype">
+                                        <option [value]="userType._id">{{ userType.type }}</option>
+                                    </ng-container>
+                                </select>
+                                <div class="input-group-append">
+                                    <button class="btn btn-success mx-3" type="button">Search</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container-fluid mt-5">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col" class="text-center">View</th>
+                                    <th scope="col" class="text-center">Add</th>
+                                    <th scope="col" class="text-center">Edit</th>
+                                    <th scope="col" class="text-center">Delete</th>
+                                    <th scope="col" class="text-center">Print</th>
+                                    <th scope="col" class="text-center">Import</th>
+                                    <th scope="col" class="text-center">Export</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Associate</th>
+                                    <td class="text-center"><input type="checkbox" ></td>
+                                    <td class="text-center"><input type="checkbox" ></td>
+                                    <td class="text-center"><input type="checkbox" ></td>
+                                    <td class="text-center"><input type="checkbox" ></td>
+                                    <td class="text-center"><input type="checkbox" ></td>
+                                    <td class="text-center"><input type="checkbox" ></td>
+                                    <td class="text-center"><input type="checkbox" ></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Commission Slab</th>
+                                    <td class="text-center"><input type="checkbox" ></td>
+                                    <td class="text-center"><input type="checkbox" ></td>
+                                    <td class="text-center"><input type="checkbox" ></td>
+                                    <td class="text-center"><input type="checkbox" ></td>
+                                    <td class="text-center"><input type="checkbox" ></td>
+                                    <td class="text-center"><input type="checkbox" ></td>
+                                    <td class="text-center"><input type="checkbox" ></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Payment</th>
+                                    <td class="text-center"><input type="checkbox" ></td>
+                                    <td class="text-center"><input type="checkbox" ></td>
+                                    <td class="text-center"><input type="checkbox" ></td>
+                                    <td class="text-center"><input type="checkbox" ></td>
+                                    <td class="text-center"><input type="checkbox" ></td>
+                                    <td class="text-center"><input type="checkbox" ></td>
+                                    <td class="text-center"><input type="checkbox" ></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Attendance</th>
+                                    <td class="text-center"><input type="checkbox" ></td>
+                                    <td class="text-center"><input type="checkbox" ></td>
+                                    <td class="text-center"><input type="checkbox" ></td>
+                                    <td class="text-center"><input type="checkbox" ></td>
+                                    <td class="text-center"><input type="checkbox" ></td>
+                                    <td class="text-center"><input type="checkbox" ></td>
+                                    <td class="text-center"><input type="checkbox" ></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Attendance Approval</th>
+                                    <td class="text-center"><input type="checkbox"></td>
+                                    <td class="text-center"><input type="checkbox"></td>
+                                    <td class="text-center"><input type="checkbox"></td>
+                                    <td class="text-center"><input type="checkbox"></td>
+                                    <td class="text-center"><input type="checkbox"></td>
+                                    <td class="text-center"><input type="checkbox"></td>
+                                    <td class="text-center"><input type="checkbox"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Booking</th>
+                                    <td class="text-center"><input type="checkbox" ></td>
+                                    <td class="text-center"><input type="checkbox" ></td>
+                                    <td class="text-center"><input type="checkbox" ></td>
+                                    <td class="text-center"><input type="checkbox" ></td>
+                                    <td class="text-center"><input type="checkbox" ></td>
+                                    <td class="text-center"><input type="checkbox" ></td>
+                                    <td class="text-center"><input type="checkbox"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+
+
+            </div>
+        </div>
+    </div>
+</div>

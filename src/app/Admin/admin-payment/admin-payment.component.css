@@ -1,0 +1,23 @@
+.table-scrollable {
+    overflow-x: auto;
+    overflow-y: hidden; 
+  }
+  
+  .table-scrollable::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .table-bordered th,
+  .table-bordered td {
+    border: 1px solid #dee2e6;
+    white-space: normal; 
+  }
+  
+  .table-bordered th {
+    background-color: #f8f9fa;
+  }
+  
+  .table-scrollable table {
+    table-layout: fixed; 
+    width: 200%; 
+  }

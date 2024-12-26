@@ -1,0 +1,171 @@
+<!-- your-component.component.html -->
+
+<div class="card-header d-flex justify-content-between align-items-center">
+    <h1 class="px-3">Customer</h1>
+</div>
+<div class="container mt-2">
+    <div class="card">
+        <div class="card-header">
+            <h3>Create</h3>
+        </div>
+        <div class="card-body">
+            <form #CustomerForm="ngForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="customerName" style="font-weight:500; font-size: 1.2rem;">Full Name<span
+                                    class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="customerName" name="customerName"
+                                placeholder="Enter Full Name" [(ngModel)]="newCustomer.fullName" required #fullName="ngModel"
+                                [class.invalid-input]="CustomerForm.submitted && fullName.invalid">
+                            <div *ngIf="CustomerForm.submitted && fullName.invalid" class="text-danger px-3">Name is required</div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="customerMobile" style="font-weight:500; font-size: 1.2rem;">Mobile Number<span
+                                    class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="customerMobile" name="customerMobile"
+                                placeholder="Enter Mobile Number" [(ngModel)]="newCustomer.mobileNumber" required #mobile="ngModel"
+                                [class.invalid-input]="CustomerForm.submitted && mobile.invalid">
+                            <div *ngIf="CustomerForm.submitted && mobile.invalid" class="text-danger px-3">Mobile Number is required</div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="customerWhatsapp" style="font-weight:500; font-size: 1.2rem;">WhatsApp Number</label>
+                            <input type="text" class="form-control" id="customerWhatsapp" name="customerWhatsapp"
+                                placeholder="Enter WhatsApp Number" [(ngModel)]="newCustomer.whatsappNumber" #whatsapp="ngModel"
+                                [class.invalid-input]="CustomerForm.submitted && whatsapp.invalid">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="customerRegDate" style="font-weight:500; font-size: 1.2rem;">Register Date <span class="text-danger">*</span></label>
+                            <!-- Use the 'date' filter to format the date without the time -->
+                            <input type="text" class="form-control" id="customerRegDate" name="customerRegDate" value="{{ toDate | date:'dd/MM/yyyy' }}" readonly>
+                        </div>
+                    </div>
+                                       
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="state" style="font-weight:500; font-size: 1.2rem;">State</label>
+                            <select class="form-control" id="state" name="state" placeholder="Select State" required [(ngModel)]="newCustomer.state" (change)="filterCities()" required #state="ngModel" [class.invalid-input]="CustomerForm.submitted && state.invalid">
+                                <option value="" disabled selected>Select State</option>
+                                <option *ngFor="let state of states" [value]="state">{{ state }}</option>
+                            </select>
+                            <div *ngIf="CustomerForm.submitted && state.invalid" class="text-danger px-3">Select State</div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="customerCity" style="font-weight:500; font-size: 1.2rem;">City</label>
+                            <select class="form-control" id="customerCity" name="customerCity" placeholder="Select City" [(ngModel)]="newCustomer.city" required #city="ngModel" [class.invalid-input]="CustomerForm.submitted && city.invalid">
+                                <option value="" disabled selected>Select City</option>
+                                <option *ngFor="let city of filteredCities" [ngValue]="city.id">{{ city.city }}</option>
+                            </select>
+                            <div *ngIf="CustomerForm.submitted && city.invalid" class="text-danger px-3">City is required</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="customerProfession" style="font-weight:500; font-size: 1.2rem;">Profession</label>
+                            <input type="text" class="form-control" id="customerProfession" name="customerProfession" placeholder="Enter Profession" [(ngModel)]="newCustomer.profession">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="customerEMail" style="font-weight:500; font-size: 1.2rem;">E-Mail</label>
+                            <input type="text" class="form-control" id="customerEMail" name="customerEMail" placeholder="Enter E-Mail" [(ngModel)]="newCustomer.emailId" required #emailId="ngModel" [class.invalid-input]="CustomerForm.submitted && emailId.invalid">
+                            <div *ngIf="CustomerForm.submitted && emailId.invalid" class="text-danger px-3">E-mail is required</div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="customerDOB" style="font-weight:500; font-size: 1.2rem;">Date of Birth</label>
+                            <input type="date" class="form-control" id="customerDOB" name="customerDOB" placeholder="Enter DOB" [(ngModel)]="newCustomer.dateOfBirth">
+                        </div>
+                    </div>
+                  
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="customerAnniversary" style="font-weight:500; font-size: 1.2rem;">Anniversary</label>
+                            <input type="date" class="form-control" id="customerAnniversary" name="customerAnniversary" placeholder="Enter Anniversary" [(ngModel)]="newCustomer.anniversary">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="customerGender" style="font-weight:500; font-size: 1.2rem;">Gender</label>
+                <select class="form-control" id="customerGender" name="customerGender" placeholder="Select Gender" required  [(ngModel)]="newCustomer.gender"  #gender="ngModel" [class.invalid-input]="CustomerForm.submitted && gender.invalid">
+                    <option value="" disabled selected>Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Transgender">Transgender</option>
+                </select>
+                <div *ngIf="CustomerForm.submitted && gender.invalid" class="text-danger px-3">Select Gender</div>
+        
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="customerBloodG" style="font-weight:500; font-size: 1.2rem;">Blood Group</label>
+                            <select class="form-control" id="customerBloodG" name="customerBloodG" placeholder="Select Blood Group" [(ngModel)]="newCustomer.bloodGroup">
+                                <option value="" disabled selected>Select Blood Group</option>
+                                <option value="O+">O+</option>
+                                <option value="A+">A+</option>
+                                <option value="B+">B+</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                                <option value="B-">B-</option>
+                                <option value="A-">A-</option>
+                                <option value="O-">O-</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="customerPan" style="font-weight:500; font-size: 1.2rem;">Pan Number</label>
+                            <input type="text" class="form-control" id="customerPan" name="customerPan" placeholder="Enter Pan Number" [(ngModel)]="newCustomer.panNumber">
+                        </div>
+                    </div>
+            <div class="col-md-4">
+                <div class="form-group position-relative">
+                    <label for="customerProfile" style="font-weight:500; font-size: 1.2rem;">Upload Profile Picture</label>
+                    <div class="input-group">
+                        <input type="file" class="form-control" id="customerProfile" name="customerProfile" (change)="onFileSelected($event)" required #photo>
+                        <button *ngIf="selectedFile" class="btn btn-danger" type="button" (click)="deleteProfile()">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                   
+                </div>
+            </div>
+            
+
+            
+
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="customerAddress" style="font-weight:500; font-size: 1.2rem;">Address</label>
+                    <textarea type="text" class="form-control" id="customerAddress" name="customerAddress" placeholder="Enter Address"[(ngModel)]="newCustomer.fullAddress" required #customerAddress="ngModel" [class.invalid-input]="CustomerForm.submitted && customerAddress.invalid" ></textarea>
+                    <div *ngIf="CustomerForm.submitted && customerAddress.invalid" class="text-danger px-3">Address is required</div>
+
+                </div>
+            </div>
+            </div>
+
+                <!-- Submit button -->
+                <div class="row mt-3">
+                    <div class="col-md-12 text-center">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

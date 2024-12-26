@@ -1,0 +1,141 @@
+<div class="container mt-3">
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h1 class="mb-0">Flat Management</h1>
+            <div class="btn-group">
+                <button class="btn btn-outline-success me-2">
+                    <i class="fas fa-plus-circle me-1"></i>Add New Project
+                </button>
+                <button class="btn btn-outline-success">
+                    <i class="fas fa-list me-1"></i>Project List
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="filter-section mb-4">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="form-label">Project</label>
+                            <select id="projects" class="form-select" [(ngModel)]="selectedProjectId" (change)="onProjectSelected()">
+                                <option value="" disabled selected>Select Project</option>
+                                <ng-container *ngFor="let project of projects">
+                                    <ng-container *ngIf="project.totalBuilding">
+                                        <option [ngValue]="project._id">{{ project.projectName }}</option>
+                                    </ng-container>
+                                </ng-container>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="form-label">Building</label>
+                            <select id="buildings" class="form-select" [(ngModel)]="selectedBuildingId" (change)="onBuildingSelected()">
+                                <option value="" disabled selected>Select Building</option>
+                                <option *ngFor="let building of buildingInputs" [ngValue]="building._id">{{ building.buildingName }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-end">
+                        <button class="btn btn-success w-100">
+                            <i class="fas fa-search me-1"></i>Search
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Flat Number</th>
+                            <th>Flat Type</th>
+                            <th>Super Buildup Area (Sqr Ft)</th>
+                            <th>Buildup Area (Sqr Ft)</th>
+                            <th>Flat Facing</th>
+                            <th>Price</th>
+                            <th>PLC Charges %</th>
+                            <th>Cost (Lacs)</th>
+                            <th>Guideline Value</th>
+                            <th>Inventory Type</th>
+                            <th>Status</th>
+                            <th>Remark</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input type="text" id="FlatNumber" class="form-control form-control-sm" placeholder="Enter Number">
+                            </td>
+                            <td>
+                                <select class="form-select form-select-sm" id="FlatType">
+                                    <option value="" disabled selected>Select Type</option>
+                                    <option value="1BHK">1 BHK</option>
+                                    <option value="2BHK">2 BHK</option>
+                                    <option value="3BHK">3 BHK</option>
+                                    <option value="4BHK">4 BHK</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="number" id="SuperBuild" class="form-control form-control-sm" placeholder="Area">
+                            </td>
+                            <td>
+                                <input type="number" id="BuildUp" class="form-control form-control-sm" placeholder="Area">
+                            </td>
+                            <td>
+                                <select class="form-select form-select-sm" id="FlatFacing">
+                                    <option value="" disabled selected>Select Facing</option>
+                                    <option value="East">East</option>
+                                    <option value="West">West</option>
+                                    <option value="North">North</option>
+                                    <option value="South">South</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="number" id="price" class="form-control form-control-sm" placeholder="Price">
+                            </td>
+                            <td>
+                                <input type="number" id="plcCharges" class="form-control form-control-sm" placeholder="PLC %">
+                            </td>
+                            <td>
+                                <input type="number" id="cost" class="form-control form-control-sm" placeholder="Cost">
+                            </td>
+                            <td>
+                                <input type="number" id="guidelineValue" class="form-control form-control-sm" placeholder="Value">
+                            </td>
+                            <td>
+                                <select class="form-select form-select-sm" id="inventoryType">
+                                    <option value="" disabled selected>Select Type</option>
+                                    <option value="Available">Available</option>
+                                    <option value="Sold">Sold</option>
+                                    <option value="Reserved">Reserved</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="form-select form-select-sm" id="status">
+                                    <option value="" disabled selected>Select Status</option>
+                                    <option value="Active">Active</option>
+                                    <option value="Inactive">Inactive</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="text" id="Remark" class="form-control form-control-sm" placeholder="Enter Remark">
+                            </td>
+                            <td>
+                                <div class="d-flex gap-2">
+                                    <button class="btn btn-sm btn-outline-warning" title="Update">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-danger" title="Delete">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

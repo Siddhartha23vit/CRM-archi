@@ -1,0 +1,29 @@
+.form-control:focus, .form-select:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  border: none;
+  color: white;
+}
+
+.btn-success:hover {
+  background: linear-gradient(135deg, #2980b9, #2c3e50);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(52, 152, 219, 0.2);
+}
+
+.btn-outline-success {
+  color: #3498db;
+  border: 1px solid #3498db;
+}
+
+.btn-outline-success:hover {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  border-color: transparent;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(52, 152, 219, 0.2);
+}

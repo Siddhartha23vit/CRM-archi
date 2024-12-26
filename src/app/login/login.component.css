@@ -1,0 +1,77 @@
+/* Fullscreen container with background image */
+.container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url('../../assets/background.jpg') no-repeat center center fixed;
+  background-size: cover; /* Ensures the image covers the entire screen */
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevents any overflow */
+}
+
+/* Centered form container with shadow */
+.form-container {
+  max-width: 400px;
+  width: 100%;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.9); /* Slight transparency to make it stand out */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* Logo styling */
+.logo-container {
+  margin-bottom: 20px;
+}
+
+.logo {
+  max-width: 150px;
+  height: auto;
+}
+
+/* Enhanced form label and input styling */
+.form-label {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.form-control {
+  font-size: 1rem;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* Larger login button with custom color */
+.btn-success {
+  background-color: #ff7e5f;
+  border: none;
+}
+
+.btn-success:hover {
+  background-color: #feb47b;
+}
+
+/* Error message styling */
+.alert-danger {
+  margin-top: 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Animation for error message */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a (click)="toggleSideNav()" class="side-nav-button navbar-brand p-2 me-2"><i class="fa-solid fa-bars"></i></a>
+    <a class="navbar-brand p-2 me-2" href="#">Company Name</a>
+  
+    
+  </nav>
+  
+  
+  <div [ngClass]="{'open': isSideNavOpen}" class="side-nav bg-dark">
+    
+    <a (click)="closeSideNav()" class="close-button bg-dark"><span>LOGO</span><span>&times;</span></a>
+    <br>
+    <ul class="side-nav-links">
+      <li [routerLink]="['UserDashboard']"><a >Dashboard</a></li>
+      <li [routerLink]="['']"><a >Setting</a></li>
+      <li [routerLink]="['']"><a>FAQ</a></li>
+      <li [routerLink]="['']"><a>Privacy Policy</a></li>
+      <li [routerLink]="['']"><a>Log Out</a></li>
+
+    </ul>
+  </div>
+  
+  <div class="container">
+    <router-outlet></router-outlet>
+  
+  </div>

@@ -1,0 +1,205 @@
+/* Card styles */
+.card {
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  background: white;
+}
+
+.card-header {
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  border-bottom: 1px solid #dee2e6;
+  padding: 1.5rem;
+  border-radius: 10px 10px 0 0;
+}
+
+.card-header h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0;
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+/* Project selector styles */
+.project-selector {
+  background: linear-gradient(to right, #f8f9fa, #e9ecef);
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.input-group {
+  position: relative;
+}
+
+.input-group select.form-control {
+  height: 42px;
+  padding-right: 2.5rem;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  color: #2c3e50;
+  transition: all 0.3s ease;
+}
+
+.input-group select.form-control:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+}
+
+/* Table styles */
+.table-responsive {
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+  margin-top: 1.5rem;
+  overflow: hidden;
+}
+
+.table {
+  margin-bottom: 0;
+  width: 100%;
+  background: white;
+  border-collapse: collapse;
+}
+
+.table thead th {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: white;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  padding: 1rem;
+  white-space: nowrap;
+  border: none;
+}
+
+.table tbody td {
+  padding: 1rem;
+  vertical-align: middle;
+  border-bottom: 1px solid #f1f1f1;
+  color: #2c3e50;
+}
+
+.table tbody tr:hover {
+  background-color: rgba(52, 152, 219, 0.05);
+  transform: translateY(-1px);
+  transition: all 0.3s ease;
+}
+
+/* Form controls */
+.form-control {
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+}
+
+/* Button styles */
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  border: none;
+  color: white;
+}
+
+.btn-success:hover {
+  background: linear-gradient(135deg, #2980b9, #2c3e50);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(52, 152, 219, 0.2);
+}
+
+.btn-outline-success {
+  color: #3498db;
+  border: 1px solid #3498db;
+  background: transparent;
+}
+
+.btn-outline-success:hover {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  border-color: transparent;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(52, 152, 219, 0.2);
+}
+
+.btn-outline-warning {
+  color: #3498db;
+  border: 1px solid #3498db;
+}
+
+.btn-outline-warning:hover {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  border-color: transparent;
+  color: white;
+}
+
+/* Project info card */
+.project-info-card {
+  background: linear-gradient(to right, #f8f9fa, #e9ecef);
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.project-info-card h5 {
+  color: #2c3e50;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.project-info-card p {
+  color: #2c3e50;
+  margin-bottom: 0;
+  font-size: 0.95rem;
+}
+
+/* Save button container */
+.save-container {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.save-container .btn {
+  min-width: 120px;
+}
+
+/* Gap row */
+.gap-row {
+  height: 0.5rem;
+  background: linear-gradient(to right, #f8f9fa, #e9ecef);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .card-header, .card-body {
+    padding: 1rem;
+  }
+  
+  .project-selector {
+    padding: 1rem;
+  }
+  
+  .table thead th,
+  .table tbody td {
+    padding: 0.75rem;
+  }
+}

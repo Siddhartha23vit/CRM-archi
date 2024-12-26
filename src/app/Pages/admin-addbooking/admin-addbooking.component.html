@@ -1,0 +1,382 @@
+  <div class="container-fluid mt-3">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="card mb-4">
+          <div class="card-header bg-success text-white">
+            <h3>Booking</h3>
+          </div>
+          <div class="card-body">
+            <form>
+              <div class="row">
+              <div class="form-group mt-1 col-md-2">
+                <label for="date" class="col-sm-3 col-form-label">Date</label>
+                <div class="col-sm-12">
+                  <input type="date" class="form-control" id="date" [(ngModel)]="newbooking.Date">
+                </div>
+            </div>
+           
+
+            <div class="form-group mt-1 col-md-3">
+              <label for="visit" class="col-sm-3 col-form-label">Visit</label>
+              <div class="col-sm-12">
+                <select class="form-control" id="visit" name="visit" [(ngModel)]="newbooking.visit">
+                  <option value="Select visit" disabled selected>Select Visit</option>
+                  <ng-container *ngFor="let visit of sitevisit">
+                    <option [ngValue]="visit.leadName.fullName">{{ visit.leadName.fullName }} - {{ visit.leadName.mobileNumber }}</option>
+                  </ng-container>
+                </select>
+              </div>
+            </div>
+           
+            <div class="form-group mt-1 col-md-3">
+              <label for="AssignTo" class="col-sm-3 col-form-label" style="white-space: nowrap;">Assign To</label>
+              <div class="col-sm-12">
+                <select class="form-control" id="AssignTo" name="AssignTo" (change)="onAssignTo($event)">
+                  <option value="" disabled>Select Associate</option>
+                  <ng-container *ngFor="let associate of associates">
+                    <option [value]="associate._id">{{ associate.fullName }}</option>
+                  </ng-container>
+                </select>
+              </div>
+            </div>
+            
+            <div class="form-group mt-1 col-md-2">
+              <label for="Commission" class="col-sm-3 col-form-label" style="white-space: nowrap;">Commission</label>
+              <div class="col-sm-12">
+                <input type="text" class="form-control" id="Commission" name="Commission" placeholder="Commission" [(ngModel)]="newbooking.Associatecommission" disabled>
+              </div>
+            </div>
+            <div class="form-group mt-1 col-md-2">
+              <label for="mobileNumber" class="col-sm-3 col-form-label" style="white-space: nowrap;">Mobile Number</label>
+              <div class="col-sm-12">
+                <input type="text" class="form-control" id="mobileNumber" name="mobileNumber" placeholder="Mobile Number" [(ngModel)]="newbooking.associatenumber" disabled>
+              </div>
+            </div>
+            
+
+
+              <div class="form-group mt-1 col-md-3">
+                <label for="unitType" class="col-sm-3 col-form-label" style="white-space: nowrap;">Unit Type</label>
+                <div class="col-sm-12">
+                  <select class="form-control" id="unitType" name="unitType" [(ngModel)]="newbooking.UnitType" (change)="onUnitTypeChange()">
+                    <option value="" disabled selected>Select Type</option>
+                    <option value="Apartment">Apartment</option>
+                    <option value="Plot">Plot</option>
+                    <option value="FarmLand">Farm Land</option>
+                    <option value="RowHouse">Row House</option>
+                  </select>
+                </div>
+              </div>
+            
+              <div class="form-group mt-1 col-md-3">
+                <label for="project" class="col-sm-3 col-form-label">Project</label>
+                <div class="col-sm-12">
+                  <select id="projects" class="form-control" name="project" [(ngModel)]="newbooking.project" (change)="onProjectChange()">
+                    <option value="" disabled selected>Select Project</option>
+                    <option *ngFor="let project of filteredProjects" [value]="project.projectName">{{ project.projectName }}</option>
+                  </select>
+                </div>
+              </div>
+            
+              <div class="form-group mt-1 col-md-3">
+                <label for="building" class="col-sm-3 col-form-label">Building</label>
+                <div class="col-sm-12">
+                  <select id="buildings" class="form-control" name="building" [(ngModel)]="newbooking.Building">
+                    <option value="" disabled selected>Select Building</option>
+                    <option *ngFor="let building of filteredBuildings" [value]="building.buildingName">{{ building.buildingName }}</option>
+                  </select>
+                </div>
+              </div>
+              
+              
+          
+ 
+              <div class="form-group mt-1 col-md-3">
+                <label for="unitNo" class="col-sm-3 col-form-label">Unit No</label>
+                <div class="col-sm-12">
+                  <input type="text" class="form-control" id="unitNo" placeholder="Unit No" [(ngModel)]="newbooking.unitNo">
+                </div>
+              </div>
+            </div>
+            </form>
+          </div>
+        </div>
+<div>
+    <div class="row">
+        <div class="col-6">
+
+        <div class="card mb-4">
+          <div class="card-header bg-info text-white">
+            <h3>Applicant Detail 1</h3>
+          </div>
+          <div class="card-body">
+            <form>
+              <div class="form-group row mt-1">
+                <label for="fullName1" class="col-sm-3 col-form-label">Full Name</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="fullName1" placeholder="Enter Name" [(ngModel)]="newbooking.fullName1">
+                </div>
+              </div>
+              <div class="form-group row mt-1">
+                <label for="mobileNumber1" class="col-sm-3 col-form-label">Mobile Number</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="mobileNumber1" placeholder="Enter mobile number" [(ngModel)]="newbooking.mobileNumber1">
+                </div>
+              </div>
+              <div class="form-group row mt-1">
+                <label for="whatsappNumber1" class="col-sm-3 col-form-label">WhatsApp Number</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="whatsappNumber1" placeholder="Enter alternate no" [(ngModel)]="newbooking.whatsappNumber1">
+                </div>
+              </div>
+              <div class="form-group row mt-1">
+                <label for="fatherName1" class="col-sm-3 col-form-label">Father Name</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="fatherName1" placeholder="Enter Name" [(ngModel)]="newbooking.fatherName1">
+                </div>
+              </div>
+              <div class="form-group row mt-1">
+                <label for="fullAddress1" class="col-sm-3 col-form-label">Full Address</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="fullAddress1" placeholder="Enter Address" [(ngModel)]="newbooking.fullAddress1">
+                </div>
+              </div>
+              <div class="form-group row mt-1">
+                <label for="emailId1" class="col-sm-3 col-form-label">Email Id</label>
+                <div class="col-sm-9">
+                  <input type="email" class="form-control" id="emailId1" placeholder="Enter Email" [(ngModel)]="newbooking.emailId1">
+                </div>
+              </div>
+              <div class="form-group row mt-1">
+                <label for="dateOfBirth1" class="col-sm-3 col-form-label">Date of Birth</label>
+                <div class="col-sm-9">
+                  <input type="date" class="form-control" id="dateOfBirth1" [(ngModel)]="newbooking.dateOfBirth1">
+                </div>
+              </div>
+              <div class="form-group row mt-1">
+                <label for="relation1" class="col-sm-3 col-form-label">Relation</label>
+                <div class="col-sm-9">
+                  <select class="form-control" id="relation1" [(ngModel)]="newbooking.relation1">
+                    <option>Self</option>
+                  </select>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="card mb-4">
+          <div class="card-header bg-info text-white">
+            <h3>Applicant Detail 2</h3>
+          </div>
+          <div class="card-body">
+            <form>
+              <div class="form-group row mt-1">
+                <label for="fullName2" class="col-sm-3 col-form-label">Full Name</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="fullName2" placeholder="Enter Name" [(ngModel)]="newbooking.fullName2">
+                </div>
+              </div>
+              <div class="form-group row mt-1">
+                <label for="mobileNumber2" class="col-sm-3 col-form-label">Mobile Number</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="mobileNumber2" placeholder="Enter mobile number" [(ngModel)]="newbooking.mobileNumber2">
+                </div>
+              </div>
+              <div class="form-group row mt-1">
+                <label for="whatsappNumber2" class="col-sm-3 col-form-label">WhatsApp Number</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="whatsappNumber2" placeholder="Enter alternate no" [(ngModel)]="newbooking.whatsappNumber2">
+                </div>
+              </div>
+              <div class="form-group row mt-1">
+                <label for="fatherName2" class="col-sm-3 col-form-label">Father Name</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="fatherName2" placeholder="Enter Name" [(ngModel)]="newbooking.fatherName2">
+                </div>
+              </div>
+              <div class="form-group row mt-1">
+                <label for="fullAddress2" class="col-sm-3 col-form-label">Full Address</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="fullAddress2" placeholder="Enter Address" [(ngModel)]="newbooking.fullAddress2">
+                </div>
+              </div>
+              <div class="form-group row mt-1">
+                <label for="emailId2" class="col-sm-3 col-form-label">Email Id</label>
+                <div class="col-sm-9">
+                  <input type="email" class="form-control" id="emailId2" placeholder="Enter Email" [(ngModel)]="newbooking.emailId2">
+                </div>
+              </div>
+              <div class="form-group row mt-1">
+                <label for="dateOfBirth2" class="col-sm-3 col-form-label">Date of Birth</label>
+                <div class="col-sm-9"> 
+                  <input type="date" class="form-control" id="dateOfBirth2" [(ngModel)]="newbooking.dateOfBirth2">
+                </div>
+              </div>
+              <div class="form-group row mt-1">
+                <label for="relation2" class="col-sm-3 col-form-label">Relation</label>
+                <div class="col-sm-9">
+                  <select class="form-control" id="relation2" [(ngModel)]="newbooking.relation2">
+                    <option>Self</option>
+                  </select>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid mt-3">
+        <div class="row">
+          <div class="col-12">
+            <div class="form-group row">
+              <label for="referralName" class="col-sm-2 col-form-label">Referral Name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="referralName" placeholder="Enter Name" [(ngModel)]="newbooking.RefferalName">
+              </div>
+            </div>
+    
+            <div class="form-group row mt-4">
+              <label for="paymentPlan" class="col-sm-2 col-form-label">Mode of Payment</label>
+              <div class="col-sm-4 mt-1">
+                <select class="form-control" id="paymentPlan" [(ngModel)]="newbooking.paymentmode">
+                  <option>Select</option>
+                </select>
+              </div>
+              <label for="remark" class="col-sm-2 col-form-label">Remark</label>
+              <div class="col-sm-4 mt-1">
+                <input type="text" class="form-control" id="remark" placeholder="Enter Remark" [(ngModel)]="newbooking.remark">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+</div>
+
+<div class="col-md-4">
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <h3>Commission Detail</h3>
+        </div>
+        <div class="card-body">
+            <form>
+               <div class="form-group row">
+    <label for="projectCommission" class="col-sm-6 col-form-label">Project Commission</label>
+    <div class="col-sm-6">
+        <input type="text" class="form-control" id="projectCommission" placeholder="0" [(ngModel)]="newbooking.ProjectCommission">
+    </div>
+</div>
+
+                <div class="form-group row mt-1">
+                    <label for="commissionMethod" class="col-sm-6 col-form-label">Commission Method</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="commissionMethod" placeholder="" [(ngModel)]="newbooking.CommissionMethod">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header bg-warning text-white">
+            <h3>Charges Detail</h3>
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="form-group row  mt-1">
+                    <label for="inclusiveRegistry" class="col-sm-6 col-form-label">Inclusive Registry</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="inclusiveRegistry" placeholder="No" [(ngModel)]="newbooking.InclusiveRegistry">
+                    </div>
+                </div>
+                <div class="form-group row mt-1">
+                    <label for="unitSize" class="col-sm-6 col-form-label">Unit Size *</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="unitSize" placeholder="0" [(ngModel)]="newbooking.UnitSize">
+                    </div>
+                </div>
+                <div class="form-group row mt-1">
+                    <label for="amount" class="col-sm-6 col-form-label">Amount *</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="amount" placeholder="0" [(ngModel)]="newbooking.Amount">
+                    </div>
+                </div>
+                <div class="form-group row mt-1">
+                    <label for="mpebs" class="col-sm-6 col-form-label">MPEBS</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="mpebs" placeholder="MPEBS" [(ngModel)]="newbooking.MPEBS">
+                    </div>
+                </div>
+                <div class="form-group row mt-1">
+                    <label for="maintenance" class="col-sm-6 col-form-label">Maintenance</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="maintenance" placeholder="Maintenance" [(ngModel)]="newbooking.Maintenance">
+                    </div>
+                </div>
+                <div class="form-group row mt-1">
+                    <label for="cornerCharges" class="col-sm-6 col-form-label">CORNER CHARGES</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="cornerCharges" placeholder="CORNER CHARGES" [(ngModel)]="newbooking.CornerCharges">
+                    </div>
+                </div>
+                <div class="form-group row mt-1">
+                    <label for="gst" class="col-sm-6 col-form-label">GST</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="gst" placeholder="GST" [(ngModel)]="newbooking.GST">
+                    </div>
+                </div>
+                <div class="form-group row mt-1">
+                    <label for="parkingCharge" class="col-sm-6 col-form-label">Parking Charge</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="parkingCharge" placeholder="Parking Charge" [(ngModel)]="newbooking.ParkingCharge">
+                    </div>
+                </div>
+                <div class="form-group row mt-1">
+                    <label for="totalAmount" class="col-sm-6 col-form-label">Total Amount</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="totalAmount" placeholder="0" [(ngModel)]="newbooking.TotalAmount">
+                    </div>
+                </div>
+                <div class="form-group row mt-1">
+                    <label for="companyDiscount" class="col-sm-6 col-form-label">Company Discount</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="companyDiscount" placeholder="0" [(ngModel)]="newbooking.CompanyDiscount" (change)="calculateNetTotal()">
+                    </div>
+                </div>
+                <div class="form-group row mt-1">
+                    <label for="otherDiscount" class="col-sm-6 col-form-label">Other Discount</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="otherDiscount" placeholder="0" [(ngModel)]="newbooking.OtherDiscount" >
+                    </div>
+                </div>
+                <div class="form-group row mt-1">
+                    <label for="netTotal" class="col-sm-6 col-form-label">Net Total</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="netTotal" placeholder="0" [(ngModel)]="newbooking.NetTotal">
+                    </div>
+                </div>
+                <div class="form-group row mt-1">
+                    <label for="totalPaid" class="col-sm-6 col-form-label">Total Paid</label>
+                    <div class="col-sm-6 mt-1">
+                        <input type="text" class="form-control" id="totalPaid" placeholder="0" [(ngModel)]="newbooking.TotalPaid">
+                    </div>
+                </div>
+                <div class="form-group row mt-1">
+                    <label for="dueAmount" class="col-sm-6 col-form-label">Due Amount</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="dueAmount" placeholder="0" [(ngModel)]="newbooking.DueAmount">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-md-12 text-center">
+          <button type="submit" class="btn btn-primary" (click)="addBooking()">Submit</button>
+      </div>
+  </div>  </div>

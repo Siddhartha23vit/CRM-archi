@@ -1,0 +1,204 @@
+.table-scrollable {
+  overflow-x: auto;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  background: white;
+  margin: 1.5rem 0;
+}
+
+.table-scrollable::-webkit-scrollbar {
+  height: 6px;
+}
+
+.table-scrollable::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+
+.table-scrollable::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 20px;
+}
+
+.table {
+  margin-bottom: 0;
+  width: 100%;
+  min-width: 1200px;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+  background: transparent;
+}
+
+.table thead th {
+  background: #f8fafc;
+  color: #1e293b;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  padding: 1rem 1.5rem;
+  border: none;
+  white-space: nowrap;
+  position: relative;
+}
+
+.table thead th:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #3498db, #2980b9);
+  opacity: 0.7;
+}
+
+.table tbody tr {
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  transition: all 0.2s ease;
+}
+
+.table tbody tr:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.table tbody td {
+  padding: 1.25rem 1.5rem;
+  border: none;
+  background: white;
+  vertical-align: middle;
+}
+
+.table tbody td:first-child {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+
+.table tbody td:last-child {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+/* Card in table styles */
+.card-col {
+  width: 450px;
+  max-width: 450px;
+  padding: 0 !important;
+}
+
+.associate-card {
+  margin: 0;
+  border: none;
+  box-shadow: none !important;
+  background: transparent;
+}
+
+.associate-card:hover {
+  transform: none;
+}
+
+.associate-card img {
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.associate-card .card-body {
+  padding: 1rem 1.5rem;
+}
+
+.card-title {
+  color: #1e293b;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* Password field styling */
+.password-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #f8fafc;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.password-container:hover {
+  background: #f1f5f9;
+}
+
+.password-text {
+  margin: 0;
+  color: #64748b;
+  font-family: monospace;
+  letter-spacing: 0.1em;
+}
+
+.password-text i {
+  color: #94a3b8;
+  transition: color 0.2s ease;
+}
+
+.password-text i:hover {
+  color: #3498db;
+}
+
+/* Action buttons */
+.btn-sm {
+  padding: 0.4rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.btn-sm i {
+  font-size: 0.875rem;
+}
+
+/* Address cell */
+.text-start p {
+  margin-bottom: 0.5rem;
+  color: #64748b;
+  font-size: 0.875rem;
+}
+
+.text-start p:last-child {
+  margin-bottom: 0;
+}
+
+.text-start strong {
+  color: #475569;
+  font-weight: 600;
+}
+
+/* Badge styling */
+.badge {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 0.75rem;
+  letter-spacing: 0.025em;
+  background: rgba(52, 152, 219, 0.1) !important;
+  color: #3498db !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .table thead th {
+    padding: 1rem;
+  }
+  
+  .table tbody td {
+    padding: 1rem;
+  }
+  
+  .associate-card img {
+    height: 150px;
+  }
+  
+  .card-col {
+    width: 100%;
+  }
+}
